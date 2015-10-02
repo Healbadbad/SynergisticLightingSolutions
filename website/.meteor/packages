@@ -7,3 +7,8 @@
 meteor-platform
 autopublish
 insecure
+fourseven:scss
+less
+ewall:foundation
+fortawesome:fontawesome
+iron:router
