@@ -13,3 +13,8 @@ ewall:foundation
 fortawesome:fontawesome
 iron:router
 http
+jquery
+meteorhacks:npm
+
+
+npm-container
