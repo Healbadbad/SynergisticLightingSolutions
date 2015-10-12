@@ -1,4 +1,33 @@
 <template name="home">
+	<template name="nav-bar">
+		<nav class="top-bar" data-topbar role="navigation">
+		  <ul class="title-area">
+		    <li class="name">
+		      <h1><a class="nav-link" href="#">Home</a></h1>
+		    </li>
+		  </ul>
+
+		  <section class="top-bar-section">
+		    <!-- Right Nav Section -->
+		    <ul class="right">
+		      <li><a class="nav-link" href="#">Sign Up</a></li>
+		      <li><a class="nav-link" href="#">Log In</a></li>
+		    </ul>
+
+		    <!-- Left Nav Section -->
+		    <ul class="left">
+		      <li><a class="nav-link" href="#">Guides</a></li>
+		    </ul>
+		  </section>
+		</nav>
+	</template>
+
+	<div id="jumbotron" class="row">
+		<h1 id="title">Synergistic Lighting Solutions</h1>
+		<h3 id="afterTitle">Party lighting made simple.</h3>
+		<button id="startNow" class="btn">Start Now</button>
+	</div>
+
     <p>Welcome to the home route!</p>
     <a href="{{pathFor route='test'}}">
         <button class="btn btn-default">Jeremy's Playground</button>
