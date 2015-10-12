@@ -19,7 +19,6 @@ meteorhacks:npm
 npm-container
 sanjo:jasmine
 velocity:html-reporter
-xolvio:webdriver
 standard-minifiers
 meteor-base
 mobile-experience
