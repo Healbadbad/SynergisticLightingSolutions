@@ -1,0 +1,2 @@
+SET VELOCITY=0
+meteor
