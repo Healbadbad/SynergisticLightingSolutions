@@ -2,7 +2,7 @@
 	<nav class="top-bar" data-topbar role="navigation">
 	  <ul class="title-area">
 	    <li class="name">
-	      <h1><a class="nav-link" href="#">Home</a></h1>
+	      <h1><a class="nav-link" href="{{pathFor route='home'}}">Home</a></h1>
 	    </li>
 	  </ul>
 
@@ -15,10 +15,11 @@
 
 	    <!-- Left Nav Section -->
 	    <ul class="left">
-	      <li><a class="nav-link" href="#">Guides</a></li>
+	      <li><a class="nav-link" href="{{pathFor route='guides'}}">Guides</a></li>
 	    </ul>
 	  </section>
 	</nav>
 
+    <!-- This makes this a layout template for the navbar. For more information, view the router config.js file -->
     {{> yield}}
 </template>

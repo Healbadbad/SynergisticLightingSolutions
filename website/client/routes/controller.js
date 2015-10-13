@@ -1,21 +1,24 @@
-Router.plugin('dataNotFound', {notFoundTemplate: 'notfound'});
-
-Router.route('/', function() {
-   this.render('home');
-});
+Router.route('/', {
+        name: 'home',
+        template: 'home'
+    }
+);
 
 Router.route('/test', function() {
     this.render('test');
 });
 
-Router.route('/dashboard', function() {
-    this.render('dashboard')
+Router.route('/dashboard', {
+    name: 'dash',
+    template: 'dashboard'
 });
 
-Router.route('/guides', function() {
-    this.render('guides');
+Router.route('/guides', {
+    name: 'guides',
+    template: 'guides'
 });
 
-Router.route('/playlist', function() {
-   this.render('playlist')
+Router.route('/playlist', {
+    name: 'playlist',
+    template: 'playlist'
 });
