@@ -3,7 +3,8 @@
  */
 Router.configure({
     layoutTemplate: 'nav-bar',
-    notFoundTemplate: 'notfound'
+    notFoundTemplate: 'notfound',
+    loadingTemplate: 'loading'
 });
 
 Router.onBeforeAction('dataNotFound');
