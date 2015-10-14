@@ -2,6 +2,7 @@
 @orange: #F39C12;
 
 .top-bar{
+	margin-top: 10px;
 	background-color: @purple;
 	margin-left: auto;
 	margin-right: auto;
@@ -15,4 +16,92 @@
 
 .top-bar-section li:not(.has-form) a:not(.button) {
     background: @purple;
+}
+
+#signUp{
+	width: 50%;
+}
+
+#signUpModalTitle{
+	text-align: center;
+}
+
+.inputGroup{
+	clear: both;
+}
+
+#newUsername, #newPassword, #rePassword{
+	width: 90%;
+	float: left;
+}
+
+.fa-check-circle-o{
+	color: green;
+	float: right;
+	display: none;
+}
+
+.formError{
+	color: red;
+	margin-left: 20px;
+}
+
+#password-strength{
+	margin-bottom: 15px;
+}
+
+#strength-bar{
+}
+
+.very-strong{
+	width: 90%;
+	border-style: solid;
+	border-color: green; 
+}
+
+.strong{
+	width: 67.5%;
+	border-style: solid;
+	border-color: #9be52a; 
+}
+
+.good{
+	width: 45%;
+	border-style: solid;
+	border-color: orange; 
+}
+
+.weak{
+	width: 22.5%;
+	border-style: solid;
+	border-color: red; 
+}
+
+.none{
+	width: 0%;
+}
+
+#rePasswordError{
+	display: none;
+}
+
+#registerButton{
+	width: 58.9%;
+}
+
+#logIn{
+	width: 50%;
+}
+
+.cancel{
+	background-color: #efefef;
+	color: #333;
+	width: 30%;
+	height: 51px;
+	border-style: solid;
+	border-color: #333;
+}
+
+#loginButton{
+	width: 68.9%;
 }
