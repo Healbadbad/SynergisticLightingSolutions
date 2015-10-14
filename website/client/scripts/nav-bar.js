@@ -33,7 +33,24 @@ Template.home.rendered = function() {
 	$("#loginButton").click(function(){
 		// login button
 	});
-}
+};
+
+Template.signUpModalInner.events({
+	'click #registerButton': function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		username = $('#newUsername')[0].value;
+		password = $('#newPassword')[0].value;
+
+		Accounts.createUser({username: username, password: password, email: "", profile: {}});
+
+		pressEsc();
+
+		Router.go('/dashboard');
+	}
+});
+
 
 function inputFieldsCheck(input){
 	$("#"+input).keyup(function(){
