@@ -18,7 +18,6 @@ meteorhacks:npm
 
 npm-container
 sanjo:jasmine
-velocity:html-reporter
 standard-minifiers
 meteor-base
 mobile-experience
@@ -33,3 +32,4 @@ ejson
 spacebars
 check
 xolvio:cucumber
+velocity:console-reporter
