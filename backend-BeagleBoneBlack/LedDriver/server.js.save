@@ -1,0 +1,41 @@
+var express = require('express');
+var app = express();
+
+var udp_port = 7890;
+var udp_host = '137.112.137.86';
+
+var dgram = require('dgram');
+var data = new Buffer(1800)
+for(var i =0;i<1800;i++){
+	data[i]	= 50
+//	message[i+1]	= 50
+//	message[i+2]	= 50
+}
+
+//opc protocol
+len_data = data.length
+len_hi_byte = len_data/256
+len_lo_byte = len_data%256
+header = new Buffer('\x00\x00'+len_hi_byte.toString(16) + len_lo_byte.toString(16))
+console.log(header)
+message = Buffer.concat([header,data])
+console.log(message.length)
+var client = dgram.createSocket('udp4');
+client.send(message,0,message.length,udp_port,udp//Fulfill GET requests, UI maybe?
+app.get('/', function(req,res){
+	
+	res.send('Hello World')
+	
+});
+
+
+
+var server = app.listen(666, function(){
+	var host = server.address().address
+	var port = server.address().port
+	
+	console.log('App listening on LIES:%s',port);
+
+	
+})
+console.log('do we run here?')
