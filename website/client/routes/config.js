@@ -5,10 +5,10 @@ Router.configure({
     onBeforeAction: function() {
         if(Meteor.user()) {
             console.log(Meteor.user());
-            this.layout('nav-bar-logged-in');
+            this.layout('navBarLoggedIn');
         } else {
             console.log("Not logged in");
-            this.layout('nav-bar');
+            this.layout('navBar');
         }
         console.log("next");
         this.next();

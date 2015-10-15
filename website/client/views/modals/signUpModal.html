@@ -1,0 +1,13 @@
+<template name="signUpModal">
+    <div id="signUp" class="reveal-modal" data-reveal aria-labelledby="signUpModalTitle" aria-hidden="true" role="dialog">
+        <h2 id="signUpModalTitle">Sign Up</h2>
+        <form data-abide>
+            {{> passwordCheck}}
+            <div class="row logInCancel">
+                <button class="cancel" aria-label="Close">Cancel</button>
+                <button type="submit" id="registerButton" disabled>Confirm Registration</button>
+            </div>
+        </form>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+</template>

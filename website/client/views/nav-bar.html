@@ -1,4 +1,4 @@
-<template name="nav-bar">
+<template name="navBar">
 	<nav class="top-bar" data-topbar role="navigation">
 	  <ul class="title-area">
 	    <li class="name">
@@ -27,70 +27,6 @@
     {{> yield}}
 </template>
 
-<template name="signUpModal">
-	<div id="signUp" class="reveal-modal" data-reveal aria-labelledby="signUpModalTitle" aria-hidden="true" role="dialog">
-		{{> signUpModalInner}}
-	</div>
-</template>
 
-<template name="signUpModalInner">
-	<h2 id="signUpModalTitle">Sign Up</h2>
-	<form data-abide>
-	  	{{> passwordTemplate}}
-	  	<div class="row logInCancel">
-	    	<button class="cancel" aria-label="Close">Cancel</button>
-	    	<button type="submit" id="registerButton" disabled>Confirm Registration</button>
-	    </div>
-	</form>
-	<a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</template>
 
-<template name="passwordTemplate">
-	<div class="name-field row">
-    	<label>Username<small> required</small><small id="newUsernameError" class="formError">A username is required.</small>
-    		<div class="inputGroup">
-     			<input class="inputGroupInput" id="newUsername" type="text" placeholder="Username">
-     			<i id="newUsernameCheck" class="fa fa-check-circle-o fa-3x"></i>
-     		</div>
-    	</label>
-  	</div>
-  	<div class="password-field">
-    	<label>Password <small> required</small><small id="newPasswordError" class="formError">A password is required.</small>
-    		<div class="inputGroup">
-	      		<input class="inputGroupInput" id="newPassword" type="password" placeholder="Password" required>
-	      		<i id="newPasswordCheck" class="fa fa-check-circle-o fa-3x"></i>
-      		</div>
-    	</label>
-  	</div>
-  	<div id="password-strength">
-  		<label>Password Strength:  <span id="strength">None</span><div id="strength-bar"></div>
-  		</label>
-  	</div>
-  	<div class="password-confirmation-field">
-	    <label>Confirm Password <small> required</small><small id="rePasswordError" class="formError">The passwords did not match</small>
-	    	<div class="inputGroup">
-		     	<input class="inputGroupInput" id="rePassword" type="password" placeholder="Confirm Password" data-equalto="newPassword">
-		     	<i id="rePasswordCheck" class="fa fa-check-circle-o fa-3x"></i>
-		     </div>
-	    </label>
-	</div>
-</template>
 
-<template name="logInModal">
-	<div id="logIn" class="reveal-modal" data-reveal aria-labelledby="logInModalTitle" aria-hidden="true" role="dialog">
-		{{> logInModalInner}}
-	</div>
-</template>
-
-<template name="logInModalInner">
-	<h2 id="logInModalTitle">Sign In</h2>
-	<form>
-	    <input type="text" id="username" placeholder="Username">
-	    <input type="password" id="password" placeholder="Password">
-	    <div class="row logInCancel">
-	    	<button class="cancel">Cancel</button>
-	    	<button type="submit" id="loginButton">Log In</button>
-	    </div>
-	</form>
-	<a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</template>
