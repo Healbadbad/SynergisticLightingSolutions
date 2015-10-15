@@ -15,10 +15,26 @@ module.exports = function () {
         client.url(url.resolve(process.env.ROOT_URL, relativePath));
     });
 
-    this.Then(/^I should see the title "([^"]*)"$/, function (expectedTitle) {
+    this.When(/^fill out "([^"]*)"$/, function (table) {
+        for (var row in table) {
+            this.client.setValue(row[0], row[1]);
+        }
+    });
+
+    this.Then(/^I should see the selector "([^"]*)"$/, function (selector) {
         // no callbacks, no promises, just simple synchronous code!
-        client.waitForExist('title');
-        expect(client.getTitle()).toEqual(expectedTitle); // using Jasmine's assertion library
+        expect(client.waitForExist(selector)).toBe(true);
+    });
+
+    this.Then(/^click on "([^"]*)"$/, function (selector) {
+        this.client.click(selector);
+    });
+
+    this.Then(/^a new user is created with the attributes"$/, function (table) {
+        //TODO get user from database
+        for (var row in table) {
+            this.client.setValue(row[0], row[1]);
+        }
     });
 
 };

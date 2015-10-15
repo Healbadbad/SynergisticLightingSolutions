@@ -15,20 +15,25 @@ Feature: A user can create an account
   Background:
     Given I am a new user
 
-  # This scenario will run as part of the Meteor dev cycle because it has the @dev tag
   @focus
-  Scenario: This scenario will run on both dev and CI
+  Scenario: I should be able to see the modal to create an account
     When I navigate to "/"
-    Then I should see the title "intentional failure"
+    And click on "#signUpModalButton"
+    Then I should see the selector "#newUsername"
+    And I should see the selector "#newPassword"
+    And I should see the selector "#rePassword"
+    And I should see the selector ".logInCancel button.cancel"
+    And I should see the selector "#registerButton"
 
-  # This scenario will not run as part of the Meteor dev cycle because it does not have the @focus
-  # tag, but it will run on CI if you use `meteor --test` for instance
-  Scenario: This scenario will not run on dev but does run on CI
-    When I navigate to "/"
-    Then I should see the title "another intentional failure"
-
-  # The @ignore tag is a convenience tag included by meteor-cucumber. See the docs for more on tags
-  @ignore
-  Scenario: This scenario will not run anywhere
-    When I navigate to "/"
-    Then I should see the title "it really doesn't matter"
+  @focus
+  Scenario: I should be able to create a valid account
+    When I navigate to "/?
+    And click on "#signUpModalButton"
+    And fill out
+      | "#newUsername" | "testUser"    |
+      | "newPassword"  | "testPass123" |
+      | "newPassword"  | "testPass123" |
+    And click on "#registerButton"
+    Then a new user is created with the attributes
+      | username | testUser    |
+      | password | testPass123 |
