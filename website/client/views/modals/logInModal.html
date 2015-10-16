@@ -1,0 +1,14 @@
+<template name="logInModal">
+    <div id="logIn" class="reveal-modal" data-reveal aria-labelledby="logInModalTitle" aria-hidden="true" role="dialog">
+        <h2 id="logInModalTitle">Sign In</h2>
+        <form>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <div class="row logInCancel">
+                <button class="cancel">Cancel</button>
+                <button type="submit" id="loginButton">Log In</button>
+            </div>
+        </form>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+</template>
