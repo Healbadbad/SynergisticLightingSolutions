@@ -9,6 +9,8 @@ Router.configure({
         } else {
             console.log("Not logged in");
             this.layout('navBar');
+            //this.render('notLoggedIn');
+            //pause();
         }
         console.log("next");
         this.next();
@@ -17,7 +19,18 @@ Router.configure({
     loadingTemplate: 'loading'
 });
 
-Router.onBeforeAction('dataNotFound');
+Router.onBeforeAction(function() {
+    if(Meteor.user()) {
+        console.log(Meteor.user());
+        this.layout('navBarLoggedIn');
+        this.next();
+
+    } else {
+        console.log("Not logged in");
+        this.layout('navBar');
+        this.render('notLoggedIn');
+    }
+}, {except: ['home']});
 
 
 

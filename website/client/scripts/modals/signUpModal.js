@@ -26,5 +26,13 @@ Template.signUpModal.events({
             which: 27 // Escape key
         });
         e.stopPropagation();
+    },
+
+    'keydown input': function(e) {
+        if(e.keyCode == 13) {
+            e.stopPropagation();
+            e.preventDefault();
+            $('#registerButton').click();
+        }
     }
 });
