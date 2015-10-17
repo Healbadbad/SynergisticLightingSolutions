@@ -4,7 +4,11 @@
 		<div id="middle">
 			<div id="inner-jumbo">
 				<h1 id="title">Synergistic Lighting Solutions</h1>
-				<h3 id="afterTitle">Party lighting made simple.</h3>
+                {{#if currentUser}}
+                    <h3 id="afterTitle">Welcome back to the party, {{currentUser.username}}</h3>
+                {{else}}
+				    <h3 id="afterTitle">Party lighting made simple.</h3>
+                {{/if}}
 				<button id="startNow" class="btn">Start Now</button>
 			</div>
 		</div>
