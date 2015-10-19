@@ -4,5 +4,6 @@
 Template.navBarLoggedIn.events({
   'click #logout': function(e) {
       Meteor.logout();
+      Router.go('/');
   }
 });
