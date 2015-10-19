@@ -1,0 +1,80 @@
+<template name="guides">
+
+	<div id="guidesJumbotron">
+		<div id="gMiddle">
+			<div id="gInner-jumbo">
+				<h1 id="guidesTitle">Here's What You Need</h1>
+                <div id="materials">
+                	<a class="materialContainer" href="http://www.amazon.com/Beagleboard-BeagleBone-Black-Beaglebone-Devkit/dp/B00CHYOLHK/ref=sr_1_5?ie=UTF8&qid=1445271363&sr=8-5&keywords=beagle+bone+black">
+	                	<div class="materialContainerInner">
+	                		<h3 class="materialTitle">Beagle Bone Black</h3>
+	                		<img src="http://elinux.org/images/2/23/REV_A5A.jpg" />
+	                		<div class="materialDesc">Beagle Bones are amazing little pieces of hardware. This is what you are going to use to run yor light server on! This will do all the hard work for you, so it doesn't matter if your computer still runs Windows 95.</div>
+	                	</div>
+                	</a>
+                	<a class="materialContainer" href="http://www.amazon.com/LEDMO-SMD2835-Flexible-Non-waterproof-brightness/dp/B013C2U80Y/ref=sr_1_1?ie=UTF8&qid=1445271403&sr=8-1-spons&keywords=led+strip&psc=1">
+	                	<div class="materialContainerInner">
+	                		<h3 class="materialTitle">LEDs</h3>
+	                		<img src="http://elinux.org/images/2/23/REV_A5A.jpg" />
+	                		<div class="materialDesc">These are the lights you are going to use to make your event awesome!</div>
+	                	</div>
+                	</a>
+                	<a class="materialContainer" href="#">
+	                	<div class="materialContainerInner">
+	                		<h3 class="materialTitle">Your Computer</h3>
+	                		<div class="computerWrapper"><i class="fa fa-laptop fa-5x"></i></div>
+	                		<div class="materialDesc">This is what you'll use to download our code and run your awesome light show.</div>
+	                	</div>
+                	</a>
+                </div>
+			</div>
+		</div>
+	</div>
+
+	    <!-- Magellin Navigation -->
+    <div data-magellan-expedition="fixed" data-options="destination_threshold:65;throttle_delay:0;">
+      <dl class="sub-nav">
+        <dd data-magellan-arrival="build"><a href="#build">Build with HTML</a></dd>
+        <dd data-magellan-arrival="js"><a href="#js">Arrival 2</a></dd>
+      </dl>
+    </div>
+
+    <div class>
+      <a name="build"></a>
+      <h3 data-magellan-destination="build">Arrival</h3>
+      
+      <a name="js"></a>
+      <h3 data-magellan-destination="js">Destination</h3>
+    </div>
+
+
+	<div id="jumbotron">
+		<div id="middle">
+			<div id="inner-jumbo">
+				<h1 id="title">Synergistic Lighting Solutions</h1>
+                {{#if currentUser}}
+                    <h3 id="afterTitle">Welcome back to the party, {{currentUser.username}}</h3>
+                {{else}}
+				    <h3 id="afterTitle">Party lighting made simple.</h3>
+                {{/if}}
+				<button id="startNow" class="btn">Start Now</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div id="guides" class="medium-6 columns">
+			<h5 class="title">Guides</h5>
+			<h6 class="para">Synergistic Lighting Solutions is your resource for creating an interactive, powerful light show with little effort. To help with this, we provide a series of guides to help you get started with the board of your choosing. Whether you are just getting started or already have a board ready, the guide is the best place to start.</h6>
+			<button id="guideButton">View Guides</button>
+		</div>
+		<div class="medium-6 columns"></div>
+	</div>
+	<div class="row">
+		<div id="program" class="medium-6 columns medium-offset-6 columns">
+			<h5 class="title">Our Program</h5>
+			<h6 class="para">Once you have a board ready, then you can get started with your LED show. Our program empowers you to run automated LED programs or go further by writing your own scripts for individual songs.</h6>
+		</div>
+	</div>
+</template>
+
