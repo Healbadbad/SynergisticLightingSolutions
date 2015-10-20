@@ -1,4 +1,56 @@
 <template name="navBarLoggedIn">
+	<nav class="top-bar" data-topbar role="navigation">
+
+	  <section class="top-bar-section">
+	    <!-- Right Nav Section -->
+	    <ul class="right">
+	    	<li><a class="nav-link" id="dashboard" href="#">Dashboard</a></li>
+	    	<li><a class="nav-link" id="playlists" href="#">Playlists</a></li>
+	      <li><a class="nav-link" id="users" href="#">Users</a></li>
+	      <li><a class="nav-link" id="logout" href="#">Sign Out</a></li>
+	      <li><a class="nav-link" id="settings" href="#"><i class="fa fa-cog"></i></a></li>
+	    </ul>
+
+	    <!-- Left Nav Section -->
+	    <ul class="left">
+	     	<!-- <li>
+	      		<a>
+	      			<a class="button media" href="#">
+	      				<i class="fa fa-play-circle"></i>
+	      			</a>
+	      			<a class="button media" href="#">
+	      				<i class="fa fa-backward"></i>
+	      			</a>
+	      			<a class="button media" href="#">
+	      				<i class="fa fa-forward"></i>
+	      			</a>
+	      		</a>
+	      	</li> -->
+	      	<li id="playWrapper" class="has-form">
+	      		<a id="playButton" class="button media" href="#">
+      				<i class="fa fa-play-circle"></i>
+      			</a>
+      		</li>
+      		<li id="songDisplayWrapper" class="has-form">
+      			<div class="row collapse">
+      				<div class="large-12 small-12 columns">
+      					<div id="songDisplay">Current Song</div>
+      				</div>
+      			</div>
+      		</li>
+	      	<li>
+	      		<a id="backButton" class="button media" href="#">
+      				<i class="fa fa-step-backward"></i>
+      			</a>
+      		</li>
+      		<li>
+	      		<a id="nextButton" class="button media" href="#">
+      				<i class="fa fa-step-forward"></i>
+      			</a>
+      		</li>
+	    </ul>
+	  </section>
+	</nav>
     <div class="nav-bar-logged-in">
         <h1>
 
