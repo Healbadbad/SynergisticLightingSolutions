@@ -1,1 +1,4 @@
-$(document).foundation();
+Template.guides.rendered = function(){
+  
+  $(document).foundation();
+}
