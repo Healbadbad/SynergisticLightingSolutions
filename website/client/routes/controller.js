@@ -1,6 +1,16 @@
 Router.route('/', {
         name: 'home',
-        template: 'home'
+        template: 'home',
+        onBeforeAction: function() {
+            if(Meteor.user()) {
+                Router.go('dash');
+                this.next();
+            }
+            else {
+                this.layout('navBar');
+            }
+            this.next();
+        }
     }
 );
 

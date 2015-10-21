@@ -36,3 +36,6 @@ xolvio:cucumber
 accounts-password
 underscore
 reactive-var
+gadicohen:phantomjs
+dfischer:phantomjs
+pfafman:filesaver
