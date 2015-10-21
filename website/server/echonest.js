@@ -80,6 +80,9 @@
 //    }
 //});
 
+//Npm.require('phantomjs');
+//var jq = Npm.require('jquery');
+
 Meteor.methods({
 
     uploadEchoFile: function (file, apiKey) {
@@ -103,11 +106,11 @@ Meteor.methods({
 
             },
             function(err, res) {
-                future.return(res);
-                if(res.statuscode === 200) {
+                //if(res.statuscode === 200) {
                     console.log(res);
+                    Meteor.call('getEchoUrl', res.data.response.track.md5, apiKey);
                     future.return(res.data.response.track.md5);
-                }
+                //}
             });
             return future.wait();
     },
@@ -119,7 +122,7 @@ Meteor.methods({
         Meteor.http.get("http://developer.echonest.com/api/v4/track/profile?api_key=" + apiKey + "&format=json&md5=" + md5 + "&bucket=audio_summary",
             {
                 data:{
-                    "api_key": apiKey,
+                    "api_key": apiKey
                     //"url": track
                 },
                 headers:{
@@ -128,36 +131,48 @@ Meteor.methods({
             },
             function(error, result){
                 jsonURL = result.data.response.track.audio_summary.analysis_url;
+                console.log(jsonURL);
+                //Meteor.call('parseJSONfile', jsonURL);
                 future.return(jsonURL);
+
         });
         return future.wait();
     },
 
-    getEchoJson: function(url) {
-        Future = Npm.require("fibers/future");
-        var future = new Future();
+    saveSong: function(file, location) {
+        var fs = Npm.require('fs');
+        var path = Npm.require('path');
+        ;
+        var filepath = root + file.name;
+        console.log(filepath);
+        var buffer = new Buffer(file);
+        fs.writeFileSync(filepath, buffer);
     },
 
-    searchYoutube: function(query){
-        var searchq = query.replace(" ", "+");
-        var params = {
-            key: "AIzaSyDuyYR4yGdSzLxeygY90AhZ29UaQGWMRE0",
-            part: "snippet",
-            q: searchq,
-            maxResults: 5
-        }
-        Meteor.http.get("https://www.googleapis.com/youtube/v3/search",
-            {params: params},
-            function(error, result){
-                if(error){
-                    console.log(error);
-                }
-                var title = result.data.items[0].snippet.title;
-                var vidID = result.datr.items[0].id.videoId;
-                var vidURL = "http://www.youtube.com/watch?v=" + vidID;
-            }
-        );
+    exponentialNesting: function() {
+        console.log('this is where the magic will go.')
     }
+
+    //searchYoutube: function(query){
+    //    var searchq = query.replace(" ", "+");
+    //    var params = {
+    //        key: "AIzaSyDuyYR4yGdSzLxeygY90AhZ29UaQGWMRE0",
+    //        part: "snippet",
+    //        q: searchq,
+    //        maxResults: 5
+    //    }
+    //    Meteor.http.get("https://www.googleapis.com/youtube/v3/search",
+    //        {params: params},
+    //        function(error, result){
+    //            if(error){
+    //                console.log(error);
+    //            }
+    //            var title = result.data.items[0].snippet.title;
+    //            var vidID = result.datr.items[0].id.videoId;
+    //            var vidURL = "http://www.youtube.com/watch?v=" + vidID;
+    //        }
+    //    );
+    //}
 //    function searchYoutube(){
 //    var q = document.getElementById("video").value;
 //    var searchq = q.replace(" ", "+");

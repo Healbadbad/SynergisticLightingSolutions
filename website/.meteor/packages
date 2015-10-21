@@ -35,3 +35,6 @@ check
 xolvio:cucumber
 accounts-password
 underscore
+gadicohen:phantomjs
+dfischer:phantomjs
+pfafman:filesaver

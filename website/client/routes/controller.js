@@ -1,6 +1,15 @@
 Router.route('/', {
         name: 'home',
-        template: 'home'
+        template: 'home',
+        onBeforeAction: function() {
+            if(Meteor.user()) {
+                tihs.layout('navBarLoggedIn');
+            }
+            else {
+                this.layout('navBar');
+            }
+            this.next();
+        }
     }
 );
 
