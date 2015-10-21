@@ -13,19 +13,6 @@
 
 	    <!-- Left Nav Section -->
 	    <ul class="left">
-	     	<!-- <li>
-	      		<a>
-	      			<a class="button media" href="#">
-	      				<i class="fa fa-play-circle"></i>
-	      			</a>
-	      			<a class="button media" href="#">
-	      				<i class="fa fa-backward"></i>
-	      			</a>
-	      			<a class="button media" href="#">
-	      				<i class="fa fa-forward"></i>
-	      			</a>
-	      		</a>
-	      	</li> -->
 	      	<li id="playWrapper" class="has-form">
 	      		<a id="playButton" class="button media" href="#">
       				<i class="fa fa-play-circle"></i>
@@ -34,16 +21,16 @@
       		<li id="songDisplayWrapper" class="has-form">
       			<div class="row collapse">
       				<div class="large-12 small-12 columns">
-      					<div id="songDisplay">Current Song</div>
+      					<div id="songDisplay">{{ getCurrentSong }}</div>
       				</div>
       			</div>
       		</li>
-	      	<li>
+	      	<li id="backWrapper">
 	      		<a id="backButton" class="button media" href="#">
       				<i class="fa fa-step-backward"></i>
       			</a>
       		</li>
-      		<li>
+      		<li id="nextWrapper">
 	      		<a id="nextButton" class="button media" href="#">
       				<i class="fa fa-step-forward"></i>
       			</a>
@@ -51,14 +38,7 @@
 	    </ul>
 	  </section>
 	</nav>
-    <div class="nav-bar-logged-in">
-        <h1>
 
-        </h1>
-
-        <a id="logout">Logout</a>
-
-    </div>
     {{> yield}}
 
 </template>
