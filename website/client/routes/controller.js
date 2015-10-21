@@ -3,7 +3,7 @@ Router.route('/', {
         template: 'home',
         onBeforeAction: function() {
             if(Meteor.user()) {
-                tihs.layout('navBarLoggedIn');
+                this.layout('navBarLoggedIn');
             }
             else {
                 this.layout('navBar');

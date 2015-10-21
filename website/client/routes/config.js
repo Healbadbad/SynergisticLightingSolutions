@@ -18,6 +18,7 @@ Router.onBeforeAction(function() {
         this.layout('navBar');
         this.render('notLoggedIn');
     }
+
 }, {except: ['home', 'guides', 'tests']});
 
 
