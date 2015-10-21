@@ -4,6 +4,8 @@ Router.route('/', {
         onBeforeAction: function() {
             if(Meteor.user()) {
                 this.layout('navBarLoggedIn');
+                Router.go('dash');
+                this.next();
             }
             else {
                 this.layout('navBar');
