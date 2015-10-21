@@ -2,35 +2,31 @@
  * Created by wrightjt on 10/12/2015.
  */
 Router.configure({
-    onBeforeAction: function() {
-        if(Meteor.user()) {
-            console.log(Meteor.user());
-            this.layout('navBarLoggedIn');
-        } else {
-            console.log("Not logged in");
-            this.layout('navBar');
-            //this.render('notLoggedIn');
-            //pause();
-        }
-        console.log("next");
-        this.next();
-    },
     notFoundTemplate: 'notfound',
     loadingTemplate: 'loading'
 });
 
 Router.onBeforeAction(function() {
-    if(Meteor.user()) {
-        console.log(Meteor.user());
+    if(Meteor.loggingIn() || Meteor.userId()) {
+        console.log(Meteor.loggingIn());
         this.layout('navBarLoggedIn');
         this.next();
 
     } else {
+        console.log('ELSE');
         console.log("Not logged in");
         this.layout('navBar');
         this.render('notLoggedIn');
     }
-}, {except: ['home']});
+}, {except: ['home', 'guides', 'tests']});
 
 
 
+//Router.onBeforeAction(function() {
+//    if(Meteor.logginIn() || Meteor.user()) {
+//        this.layout('navBarLoggedIn');
+//    } else {
+//        this.layout('navBar');
+//    }
+//    this.next();
+//}, {only: ['home', 'guides', 'tests']});

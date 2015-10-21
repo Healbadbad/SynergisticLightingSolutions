@@ -17,18 +17,40 @@ Template.test.events({
        // });
        var md5;
        var json;
-      Meteor.call('uploadEchoFile', files, "IQ8ICKDOZGGE74XJQ", function(err, res) {
-          md5 = res.data.response.track.md5;
-          console.log(md5);
-          Meteor.call('getEchoUrl', md5, "IQ8ICKDOZGGE74XJQ", function(err, res) {
+       var apiKey = "IQ8ICKDOZGGE74XJQ";
+       var filename = files.name;
+       var storedFile;
+       console.log(filename);
 
-              $.getJSON(res, function(data){
-                  console.log(data);
-              });
-          });
-      });
+       var freader = new FileReader();
 
-       Meteor.call('searchYoutube', 'sad machine');
+       freader.onloadend = function() {
+           storedFile = freader.result;
+           //console.log(storedFile);
+       };
+
+       freader.readAsDataURL(files);
+
+       //storedFile = JSON.stringify(files);
+       console.log(storedFile);
+       //Meteor.call('saveSong', files);
+       //var buffer = new Buffer(files);
+       Meteor.call('uploadEchoFile', files, "IQ8ICKDOZGGE74XJQ", function(err, res) {
+           Meteor.call('getEchoUrl', res, apiKey, function(err, urlres) {
+               console.log(urlres);
+               json = $.getJSON(urlres, function(data) {
+                   var finaldata = {
+                       beats: data.beats,
+                       segments: data.segments
+                   };
+                   console.log(finaldata);
+                   Meteor.call('addSongToPlaylist', 10, "pisswater.com", urlres, storedFile);
+               });
+           });
+       });
+
+
+       //Meteor.call('searchYoutube', 'sad machine');
    }
 });
 
