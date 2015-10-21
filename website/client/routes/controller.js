@@ -3,6 +3,7 @@ Router.route('/', {
         template: 'home',
         onBeforeAction: function() {
             if(Meteor.user()) {
+                this.layout('navBarLoggedIn');
                 Router.go('dash');
                 this.next();
             }

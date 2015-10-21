@@ -17,8 +17,6 @@ meteorhacks:npm
 
 
 npm-container
-sanjo:jasmine
-velocity:html-reporter
 standard-minifiers
 meteor-base
 mobile-experience
@@ -32,7 +30,6 @@ random
 ejson
 spacebars
 check
-xolvio:cucumber
 accounts-password
 underscore
 reactive-var
