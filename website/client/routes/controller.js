@@ -29,7 +29,7 @@ Router.route('/guides', {
     template: 'guides'
 });
 
-Router.route('/playlist', {
+Router.route('/playlist/:id', {
     name: 'playlist',
     template: 'playlist'
 });

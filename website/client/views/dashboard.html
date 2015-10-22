@@ -1,5 +1,16 @@
 <template name="dashboard">
     <div class="dashboard">
-    	//
+        <div class="content row">
+            <h1>Playlists</h1>
+            <table>
+                {{#each getPlaylists}}
+                    <tr>
+                        <td><a href="{{pathFor route='playlist.show'}}">{{this.name}}</a></td>
+                        <td>{{this.owner}}</td>
+                        <td>{{this.members.length}}</td>
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
     </div>
 </template>
