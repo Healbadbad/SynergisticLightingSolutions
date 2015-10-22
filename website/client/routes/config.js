@@ -8,13 +8,13 @@ Router.configure({
 
 Router.onBeforeAction(function() {
     if(Meteor.loggingIn() || Meteor.userId()) {
-        console.log(Meteor.loggingIn());
+        //console.log(Meteor.loggingIn());
         this.layout('navBarLoggedIn');
         this.next();
 
     } else {
-        console.log('ELSE');
-        console.log("Not logged in");
+        //console.log('ELSE');
+        //console.log("Not logged in");
         this.layout('navBar');
         this.render('notLoggedIn');
     }

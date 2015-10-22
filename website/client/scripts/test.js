@@ -20,7 +20,7 @@ Template.test.events({
        var apiKey = "IQ8ICKDOZGGE74XJQ";
        var filename = files.name;
        var storedFile;
-       console.log(filename);
+       //console.log(filename);
 
        var freader = new FileReader();
 
@@ -32,18 +32,18 @@ Template.test.events({
        freader.readAsDataURL(files);
 
        //storedFile = JSON.stringify(files);
-       console.log(storedFile);
+       //console.log(storedFile);
        //Meteor.call('saveSong', files);
        //var buffer = new Buffer(files);
        Meteor.call('uploadEchoFile', files, "IQ8ICKDOZGGE74XJQ", function(err, res) {
            Meteor.call('getEchoUrl', res, apiKey, function(err, urlres) {
-               console.log(urlres);
+               //console.log(urlres);
                json = $.getJSON(urlres, function(data) {
                    var finaldata = {
                        beats: data.beats,
                        segments: data.segments
                    };
-                   console.log(finaldata);
+                   //console.log(finaldata);
                    Meteor.call('addSongToPlaylist', 10, "pisswater.com", urlres, storedFile);
                });
            });

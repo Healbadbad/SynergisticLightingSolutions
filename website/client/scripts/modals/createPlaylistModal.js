@@ -16,5 +16,12 @@ Template.createPlaylistModal.events({
         //    $('#newPasswordCheck').hide();
         //    $('#newPasswordError').show();
         //}
+    },
+    'click .cancel': function(e) {
+        console.log("create cancel");
+        $('body').trigger({
+            type: 'keyup',
+            which: 27 // Escape key
+        });
     }
 });

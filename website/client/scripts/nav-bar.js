@@ -42,7 +42,7 @@ Template.navBar.events({
 
 	'click #logInModalButton': function() {
 		$('#logIn').foundation("reveal", "open");
-		console.log($('#username'));
+		//console.log($('#username'));
 		$('#username').trigger('focus');
 	}
 });

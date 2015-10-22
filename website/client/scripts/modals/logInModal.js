@@ -31,12 +31,12 @@ Template.logInModal.events({
     },
 
     'keydown input': function(e) {
-        console.log("DED");
+        //console.log("DED");
 
         if(e.keyCode == 13) {
             e.stopPropagation();
             e.preventDefault();
-            console.log("TICKLE MY DIDDLE");
+            //console.log("TICKLE MY DIDDLE");
             $('#loginButton').click();
         }
     }
