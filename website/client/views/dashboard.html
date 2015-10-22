@@ -1,16 +1,48 @@
 <template name="dashboard">
     <div class="dashboard">
         <div class="content row">
+            {{> createPlaylistModal}}
             <h1>Playlists</h1>
-            <table>
+            <table class="playlist-table">
+                <tr>
+                    <th>#</th>
+                    <th>Playlist Name</th>
+                    <th>Owner</th>
+                    <th># Songs</th>
+                    <th>Options</th>
+                </tr>
                 {{#each getPlaylists}}
                     <tr>
-                        <td><a href="{{pathFor route='playlist.show'}}">{{this.name}}</a></td>
+                        <td>{{getPlaylistIndex}}</td>
+                        <td>
+                            {{#linkTo route="playlist.show" class="my-cls"}}
+                                {{this.name}}
+                            {{/linkTo}}
+                        </td>
                         <td>{{this.owner}}</td>
                         <td>{{this.members.length}}</td>
+                        <td>
+                            <a href="{{pathFor route='playlist.show'}}">
+                                <button class="button radius tiny playlist-option-button">View</button>
+                            </a>
+                            {{#if isAuthorized this.authorizedUserIds currentUser._id}}
+                                <a href="{{pathFor route='playlist.edit'}}">
+                                    <button class="button radius tiny playlist-option-button">Edit</button>
+                                </a>
+                                <a href="{{pathFor route='playlist.delete'}}">
+                                    <button class="button radius alert tiny playlist-option-button">Remove</button>
+                                </a>
+                            {{/if}}
+
+                        </td>
                     </tr>
                 {{/each}}
             </table>
+            <a class="nav-link" id="createPlaylistModalButton" data-reveal-id="createPlaylist" href="#">
+                <button class="button radius large">
+                    Add Playlist +
+                </button>
+            </a>
         </div>
     </div>
 </template>
