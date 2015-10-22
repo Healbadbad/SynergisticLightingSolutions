@@ -1,5 +1,5 @@
 Template.createPlaylistModal.events({
-    'keyup #newPlaylistName': function(e) {
+    'keyup #new-playlist-name': function(e) {
         // TODO don't know why this is not being called
         console.log("called");
         console.log(e.target.value);

@@ -21,7 +21,7 @@ Template.dashboard.helpers({
 });
 
 Template.dashboard.events({
-    'click #createPlaylistModalButton': function() {
-        $('#createPlaylist').foundation("reveal", "open");
+    'click #create-playlist-modal-button': function() {
+        $('#create-playlist').foundation("reveal", "open");
     }
 });
