@@ -16,10 +16,6 @@ Template.dashboard.helpers({
         return playlist_index;
     },
     isAuthorized: function(authorizedIds, currentUserId) {
-        console.log("start");
-        console.log(authorizedIds);
-        console.log(currentUserId);
-        console.log(authorizedIds.indexOf(currentUserId));
         return authorizedIds.indexOf(currentUserId) != -1;
     }
 });
