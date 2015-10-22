@@ -22,15 +22,16 @@
                         <td>{{this.owner}}</td>
                         <td>{{this.members.length}}</td>
                         <td>
-                            <a href="{{pathFor route='playlist.show'}}">
-                                <button class="button radius tiny playlist-option-button">View</button>
-                            </a>
                             {{#if isAuthorized this.authorizedUserIds currentUser._id}}
-                                <a href="{{pathFor route='playlist.edit'}}">
-                                    <button class="button radius tiny playlist-option-button">Edit</button>
+                                <a href="{{pathFor route='playlist.show'}}">
+                                    <button class="button radius tiny playlist-option-button">View / Edit</button>
                                 </a>
                                 <a href="{{pathFor route='playlist.delete'}}">
                                     <button class="button radius alert tiny playlist-option-button">Remove</button>
+                                </a>
+                            {{else}}
+                                <a href="{{pathFor route='playlist.show'}}">
+                                    <button class="button radius tiny playlist-option-button">View</button>
                                 </a>
                             {{/if}}
 
