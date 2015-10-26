@@ -15,7 +15,8 @@ Template.createPlaylistModal.events({
             which: 27 // Escape key
         });
         e.stopPropagation();
-        console.log("cancer");
+        // TODO create playlist
+        var playlistName = $('#new-playlist-name').val();
     },
     'click .cancel': function(e) {
         e.preventDefault();
