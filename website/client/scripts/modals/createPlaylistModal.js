@@ -17,11 +17,25 @@ Template.createPlaylistModal.events({
         //    $('#newPasswordError').show();
         //}
     },
-    'click .cancel': function(e) {
-        console.log("create cancel");
+    'click #create-playlist-button': function(e){
+        e.preventDefault();
         $('body').trigger({
             type: 'keyup',
             which: 27 // Escape key
         });
-    }
+        e.stopPropagation();
+        console.log("cancer");
+    },
+    'click #workPls': function(e) {
+        e.preventDefault();
+        $('body').trigger({
+            type: 'keyup',
+            which: 27 // Escape key
+        });
+        e.stopPropagation();
+    },
 });
+
+Template.createPlaylistModal.rendered = function(){
+    console.log("rendered");
+};

@@ -24,10 +24,12 @@ Template.logInModal.events({
     },
 
     'click .cancel': function(e) {
+        e.preventDefault();
         $('body').trigger({
             type: 'keyup',
             which: 27 // Escape key
         });
+        e.stopPropagation();
     },
 
     'keydown input': function(e) {

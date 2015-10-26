@@ -1,5 +1,5 @@
 <template name="createPlaylistModal">
-    <div id="create-playlist" class="reveal-modal" data-reveal aria-labelledby="create-playlistModalTitle" aria-hidden="true" role="dialog">
+    <div id="create-playlist" class="reveal-modal" data-reveal aria-labelledby="create-playlist-modal-title" aria-hidden="true" role="dialog">
         <h1 id="create-playlist-modal-title">Create a new Playlist</h1>
         <form data-abide>
             <div class="name-field row">
@@ -10,8 +10,8 @@
                 </label>
             </div>
             <div class="row create-playlist-cancel">
-                <button class="cancel create-playlist-button" aria-label="Close">Cancel</button>
-                <button type="submit" id="create-playlist-button" class="create-playlist-button" disabled>Create Playlist</button>
+                <button id="workPls" type="button" class="cancel create-playlist-button" aria-label="Close">Cancel</button>
+                <button type="submit" id="create-playlist-button" class="create-playlist-button">Create Playlist</button>
             </div>
         </form>
         <a class="close-reveal-modal" aria-label="Close">&#215;</a>
