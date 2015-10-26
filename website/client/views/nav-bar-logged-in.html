@@ -1,5 +1,5 @@
 <template name="navBarLoggedIn">
-	<nav class="top-bar" data-topbar role="navigation">
+	<nav class="top-bar" id="loggedInNav" data-topbar role="navigation">
 
 	  <section class="top-bar-section">
 	    <!-- Right Nav Section -->
@@ -19,21 +19,15 @@
       			</a>
       		</li>
       		<li id="songDisplayWrapper" class="has-form">
-      			<div class="row collapse">
-      				<div class="large-12 small-12 columns">
+      			<!-- <div class="row collapse"> -->
+      				<div id="displayTrackWrapper" class="large-12 small-12 columns">
       					<div id="songDisplay">{{ getCurrentSong }}</div>
+	      				<div id="trackButtons">
+	      					<a id="backButton" class="button media" href="#"><i class="fa fa-step-backward"></i></a>
+			      			<a id="nextButton" class="button media" href="#"><i class="fa fa-step-forward"></i></a>
+			      		</div>
       				</div>
-      			</div>
-      		</li>
-	      	<li id="backWrapper">
-	      		<a id="backButton" class="button media" href="#">
-      				<i class="fa fa-step-backward"></i>
-      			</a>
-      		</li>
-      		<li id="nextWrapper">
-	      		<a id="nextButton" class="button media" href="#">
-      				<i class="fa fa-step-forward"></i>
-      			</a>
+      			<!-- </div> -->
       		</li>
 	    </ul>
 	  </section>
