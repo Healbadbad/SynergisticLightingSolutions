@@ -15,8 +15,8 @@ Template.createPlaylistModal.events({
             which: 27 // Escape key
         });
         e.stopPropagation();
-        // TODO create playlist
         var playlistName = $('#new-playlist-name').val();
+        Meteor.call('addPlaylist', Meteor.userId(), playlistName, Meteor.user().username, [], [Meteor.userId()]);
     },
     'click .cancel': function(e) {
         e.preventDefault();
@@ -27,7 +27,3 @@ Template.createPlaylistModal.events({
         e.stopPropagation();
     }
 });
-
-Template.createPlaylistModal.rendered = function(){
-    console.log("rendered");
-};
