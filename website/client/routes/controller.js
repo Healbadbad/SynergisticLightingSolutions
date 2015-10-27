@@ -33,3 +33,8 @@ Router.route('/playlist', {
     name: 'playlist',
     template: 'playlist'
 });
+
+Router.route('/users', {
+    name: 'users',
+    template: 'users'
+});
