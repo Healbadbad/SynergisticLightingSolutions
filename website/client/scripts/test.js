@@ -1,6 +1,8 @@
 /**
  * Created by wrightjt on 10/2/2015.
  */
+
+
 Template.test.events({
    'change input': function(e) {
        files = $("input[type='file']")[0].files[0];
@@ -21,35 +23,62 @@ Template.test.events({
        var filename = files.name;
        var storedFile;
 
+
        var audio = new Audio(files);
 
+       Meteor.call('testJquery');
 
-       var freader = new FileReader();
 
-       freader.onloadend = function() {
-           storedFile = freader.result;
-       };
+        MP3s.insert(files);
+       //
+       //var freader = new FileReader();
+       // freader.onloadend = function() {
+       //     console.log("Here");
+       //     MP3s.insert(freader.result);
+       // };
+       //
+       //freader.readAsArrayBuffer(files);
 
-       freader.readAsDataURL(files);
+
+       //freader.onloadend = function() {
+       //    storedFile = freader.result;
+       //    $.ajax({
+       //        url: "http://developer.echonest.com/api/v4/track/upload?api_key=" + apiKey + "&filetype=mp3",
+       //        type: 'POST',
+       //        dataType: 'json',
+       //        data: storedFile,
+       //        processData: false,
+       //        contentType: false,
+       //        success: function(resp){
+       //
+       //            console.log(resp);
+       //        },
+       //        error: function(XMLHttpRequest, textStatus, errorThrown){
+       //            alert("Could not search.");
+       //        }
+       //    });
+       //};
+       //
+       //freader.readAsDataURL(files);
 
        //storedFile = JSON.stringify(files);
-       console.log(storedFile);
-       //Meteor.call('saveSong', files);
-       //var buffer = new Buffer(files);
-       Meteor.call('uploadEchoFile', files, "IQ8ICKDOZGGE74XJQ", function(err, res) {
-           Meteor.call('getEchoUrl', res, apiKey, function(err, urlres) {
-               console.log(urlres);
-               json = $.getJSON(urlres, function(data) {
-                   var finaldata = {
-                       beats: data.beats,
-                       segments: data.segments
-                   };
-                   Meteor.call('addSongToPlaylist', 10, "pisswater.com", urlres, storedFile);
-                   console.log("playing");
-                   audio.play();
-               });
-           });
-       });
+       //console.log(storedFile);
+       ////Meteor.call('saveSong', files);
+       ////var buffer = new Buffer(files);
+       //Meteor.call('uploadEchoFile', files, "IQ8ICKDOZGGE74XJQ", function(err, res) {
+       //    Meteor.call('getEchoUrl', res, apiKey, function(err, urlres) {
+       //        console.log(urlres);
+       //        json = $.getJSON(urlres, function(data) {
+       //            var finaldata = {
+       //                beats: data.beats,
+       //                segments: data.segments
+       //            };
+       //            Meteor.call('addSongToPlaylist', 10, "pisswater.com", urlres, storedFile);
+       //            console.log("playing");
+       //            audio.play();
+       //        });
+       //    });
+       //});
 
 
        //Meteor.call('searchYoutube', 'sad machine');

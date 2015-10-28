@@ -148,6 +148,15 @@ Meteor.methods({
 
     exponentialNesting: function() {
         console.log('this is where the magic will go.')
+    },
+
+    doMagic: function() {
+
+    },
+    testJquery: function() {
+        Meteor.npmRequire('jquery');
+        console.log($.getJSON('http://echonest-analysis.s3.amazonaws.com/TR/TRVMJJK14C423E3A2A/3/full.json?AWSAccessKeyId=AKIAJRDFEY23UEVW42BQ&Expires=1445626355&Signature=0b%2BCvj6KrLTK6OcJlUiIdZBcQCk%3D'));
+
     }
 
     //searchYoutube: function(query){
