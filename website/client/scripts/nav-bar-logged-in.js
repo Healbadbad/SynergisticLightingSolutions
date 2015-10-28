@@ -12,7 +12,7 @@ Template.navBarLoggedIn.events({
   	},
 
   	'click #nextButton': function(e, template){
-  		template.currentSong.set("plserino");
+  		template.currentSong.set("Sandstorm - Darude");
   	},
 });
 
@@ -22,7 +22,7 @@ Template.navBarLoggedIn.events({
 // };
 
 Template.navBarLoggedIn.onCreated(function(){
-	this.currentSong = new ReactiveVar("test");
+	this.currentSong = new ReactiveVar("Sandstorm - Darude");
 });
 
 Template.navBarLoggedIn.helpers({
