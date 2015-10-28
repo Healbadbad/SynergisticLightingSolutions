@@ -87,12 +87,12 @@ Meteor.methods({
 
     uploadEchoFile: function (file, apiKey) {
         Future = Npm.require("fibers/future");
-        console.log("start");
         var future = new Future();
         var jsonURL;
         var apiKey = "KZVTGHHVOTXY6XXYA";
         var url = "http://developer.echonest.com/api/v4/track/upload";
         var track = "http://tylergrund.com/mp3/MP3s%20from%20home/Coldplay/01%20Speed%20Of%20Sound.mp3";
+
 
         Meteor.http.post("http://developer.echonest.com/api/v4/track/upload?api_key=" + apiKey + "&url=" + track,
             {
@@ -107,7 +107,6 @@ Meteor.methods({
             },
             function(err, res) {
                 //if(res.statuscode === 200) {
-                    console.log(res);
                     Meteor.call('getEchoUrl', res.data.response.track.md5, apiKey);
                     future.return(res.data.response.track.md5);
                 //}
@@ -116,10 +115,10 @@ Meteor.methods({
     },
 
     getEchoUrl: function(md5, apiKey) {
-        console.log("MD5", md5);
         Future = Npm.require("fibers/future");
         var future = new Future();
         Meteor.http.get("http://developer.echonest.com/api/v4/track/profile?api_key=" + apiKey + "&format=json&md5=" + md5 + "&bucket=audio_summary",
+
             {
                 data:{
                     "api_key": apiKey
@@ -131,7 +130,6 @@ Meteor.methods({
             },
             function(error, result){
                 jsonURL = result.data.response.track.audio_summary.analysis_url;
-                console.log(jsonURL);
                 //Meteor.call('parseJSONfile', jsonURL);
                 future.return(jsonURL);
 
@@ -142,9 +140,8 @@ Meteor.methods({
     saveSong: function(file, location) {
         var fs = Npm.require('fs');
         var path = Npm.require('path');
-        ;
+
         var filepath = root + file.name;
-        console.log(filepath);
         var buffer = new Buffer(file);
         fs.writeFileSync(filepath, buffer);
     },

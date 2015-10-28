@@ -20,13 +20,14 @@ Template.test.events({
        var apiKey = "IQ8ICKDOZGGE74XJQ";
        var filename = files.name;
        var storedFile;
-       console.log(filename);
+
+       var audio = new Audio(files);
+
 
        var freader = new FileReader();
 
        freader.onloadend = function() {
            storedFile = freader.result;
-           //console.log(storedFile);
        };
 
        freader.readAsDataURL(files);
@@ -43,8 +44,9 @@ Template.test.events({
                        beats: data.beats,
                        segments: data.segments
                    };
-                   console.log(finaldata);
                    Meteor.call('addSongToPlaylist', 10, "pisswater.com", urlres, storedFile);
+                   console.log("playing");
+                   audio.play();
                });
            });
        });
