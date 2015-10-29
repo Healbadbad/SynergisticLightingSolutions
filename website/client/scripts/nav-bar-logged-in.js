@@ -14,6 +14,9 @@ Template.navBarLoggedIn.events({
   	'click #nextButton': function(e, template){
   		template.currentSong.set("Sandstorm - Darude");
   	},
+	'click #settingsButton' : function() {
+		$('#settings').foundation("reveal", "open");
+	}
 });
 
 
