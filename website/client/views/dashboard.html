@@ -25,9 +25,7 @@
                                 <a href="{{pathFor route='playlist.show'}}">
                                     <button class="button radius small playlist-option-button">View / Edit</button>
                                 </a>
-                                <a href="{{pathFor route='playlist.delete'}}">
-                                    <button class="button radius alert small playlist-option-button">Remove</button>
-                                </a>
+                                <button id="delete-playlist-button" class="button radius alert small playlist-option-button">Remove</button>
                             {{else}}
                                 <a href="{{pathFor route='playlist.show'}}">
                                     <button class="button radius small playlist-option-button">View</button>

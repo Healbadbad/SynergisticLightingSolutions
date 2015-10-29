@@ -23,5 +23,9 @@ Template.dashboard.helpers({
 Template.dashboard.events({
     'click #create-playlist-modal-button': function() {
         $('#create-playlist').foundation("reveal", "open");
+    },
+    'click #delete-playlist-button': function(e, template) {
+        Playlists.remove({_id: this._id});
     }
+
 });
