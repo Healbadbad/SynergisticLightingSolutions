@@ -24,19 +24,21 @@ Template.logInModal.events({
     },
 
     'click .cancel': function(e) {
+        e.preventDefault();
         $('body').trigger({
             type: 'keyup',
             which: 27 // Escape key
         });
+        e.stopPropagation();
     },
 
     'keydown input': function(e) {
-        console.log("DED");
+        //console.log("DED");
 
         if(e.keyCode == 13) {
             e.stopPropagation();
             e.preventDefault();
-            console.log("TICKLE MY DIDDLE");
+            //console.log("TICKLE MY DIDDLE");
             $('#loginButton').click();
         }
     }

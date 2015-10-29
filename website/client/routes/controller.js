@@ -1,8 +1,8 @@
 Router.route('/', {
         name: 'home',
         template: 'home',
-        onBeforeAction: function() {
-            if(Meteor.user()) {
+        onBeforeAction: function () {
+            if (Meteor.user()) {
                 this.layout('navBarLoggedIn');
                 Router.go('dash');
                 this.next();
@@ -15,7 +15,7 @@ Router.route('/', {
     }
 );
 
-Router.route('/test', function() {
+Router.route('/test', function () {
     this.render('test');
 });
 
@@ -37,7 +37,8 @@ Router.route('/guides', {
     template: 'guides'
 });
 
-Router.route('/playlist', {
-    name: 'playlist',
-    template: 'playlist'
-});
+Router.route('/playlist/:id', {
+        name: 'playlist.show',
+        template: 'playlist'
+    }
+);
