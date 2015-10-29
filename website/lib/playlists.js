@@ -1,7 +1,7 @@
 /**
  * Created by wrightjt on 10/13/2015.
  */
-var Playlists = new Mongo.Collection('playlists');
+Playlists = new Mongo.Collection('playlists');
 
 Meteor.methods({
     addPlaylist: function(id, name, owner, members, authorizedUserIds) {

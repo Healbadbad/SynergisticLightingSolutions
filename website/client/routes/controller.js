@@ -21,7 +21,15 @@ Router.route('/test', function () {
 
 Router.route('/dashboard', {
     name: 'dash',
-    template: 'dashboard'
+    template: 'dashboard',
+    waitOn: function() {
+        return Meteor.subscribe('allPlaylists');
+    },
+    action: function() {
+        if(this.ready()) {
+            this.render('dashboard');
+        }
+    }
 });
 
 Router.route('/guides', {
