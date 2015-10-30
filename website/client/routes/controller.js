@@ -37,6 +37,11 @@ Router.route('/guides', {
     template: 'guides'
 });
 
+Router.route('/users', {
+    name: 'users',
+    template: 'users'
+});
+
 Router.route('/playlist/:id', {
         name: 'playlist.show',
         template: 'playlist'
