@@ -1,6 +1,23 @@
 /**
  * Created by wrightjt on 10/15/2015.
  */
+function resetNumberOfLEDS() {
+	var numberOfLEDS = getNumberOfLEDS();
+	$('#led-input').val(numberOfLEDS);
+	if (numberOfLEDS >= 0) {
+		$('#led-error').hide();
+		$('#update-number-leds-button').prop('disabled', false);
+	} else {
+		$('#led-error').show();
+		$('#update-number-leds-button').prop('disabled', true);
+	}
+}
+
+function getNumberOfLEDS() {
+	// TODO
+	return 42;
+}
+
 Template.navBarLoggedIn.events({
   	'click #logout': function(e) {
     	Meteor.logout();
@@ -16,6 +33,7 @@ Template.navBarLoggedIn.events({
   	},
 	'click #settingsButton' : function() {
 		$('#settings').foundation("reveal", "open");
+		resetNumberOfLEDS();
 	}
 });
 
@@ -35,3 +53,5 @@ Template.navBarLoggedIn.helpers({
 	},
 
 });
+
+

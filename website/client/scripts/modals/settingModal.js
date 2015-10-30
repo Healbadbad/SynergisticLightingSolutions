@@ -1,23 +1,30 @@
 Template.settingsModal.events({
-    'keyup #setting1': function(e) {
-        if (e.target.value) {
-            $('#setting1-error').hide();
-            $('#save-settings-button').prop('disabled', false);
-        } else{
-            $('#setting1-error').show();
-            $('#save-settings-button').prop('disabled', true);
+    'keyup #led-input': function (e) {
+        if (e.target.value >= 0) {
+            $('#led-error').hide();
+            $('#update-number-leds-button').prop('disabled', false);
+        } else {
+            $('#led-error').show();
+            $('#update-number-leds-button').prop('disabled', true);
         }
     },
-    'click #save-settings-button': function(e){
+    'click #update-firmware-button': function (e) {
+        // TODO
+        e.preventDefault();
+        console.log("update the firmware");
+    },
+    'click #update-number-leds-button': function (e) {
+        // TODO
         e.preventDefault();
         $('body').trigger({
             type: 'keyup',
             which: 27 // Escape key
         });
         e.stopPropagation();
+        numberOfLEDs = $('#led-input').val();
         console.log("save settings");
     },
-    'click .cancel': function(e) {
+    'click .cancel': function (e) {
         e.preventDefault();
         $('body').trigger({
             type: 'keyup',
@@ -26,3 +33,5 @@ Template.settingsModal.events({
         e.stopPropagation();
     }
 });
+
+
