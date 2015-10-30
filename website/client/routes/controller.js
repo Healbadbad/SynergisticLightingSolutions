@@ -1,8 +1,8 @@
 Router.route('/', {
         name: 'home',
         template: 'home',
-        onBeforeAction: function() {
-            if(Meteor.user()) {
+        onBeforeAction: function () {
+            if (Meteor.user()) {
                 this.layout('navBarLoggedIn');
                 Router.go('dash');
                 this.next();
@@ -15,13 +15,21 @@ Router.route('/', {
     }
 );
 
-Router.route('/test', function() {
+Router.route('/test', function () {
     this.render('test');
 });
 
 Router.route('/dashboard', {
     name: 'dash',
-    template: 'dashboard'
+    template: 'dashboard',
+    waitOn: function() {
+        return Meteor.subscribe('allPlaylists');
+    },
+    action: function() {
+        if(this.ready()) {
+            this.render('dashboard');
+        }
+    }
 });
 
 Router.route('/guides', {
@@ -29,12 +37,13 @@ Router.route('/guides', {
     template: 'guides'
 });
 
-Router.route('/playlist', {
-    name: 'playlist',
-    template: 'playlist'
-});
-
 Router.route('/users', {
     name: 'users',
     template: 'users'
 });
+
+Router.route('/playlist/:id', {
+        name: 'playlist.show',
+        template: 'playlist'
+    }
+);
