@@ -27,7 +27,7 @@ Template.navBarLoggedIn.onCreated(function(){
 
 Template.navBarLoggedIn.helpers({
 	getCurrentSong: function(){
-		console.log(Template.instance().currentSong.get());
+		//console.log(Template.instance().currentSong.get());
 		return Template.instance().currentSong.get();
 	},
 

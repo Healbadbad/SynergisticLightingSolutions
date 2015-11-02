@@ -1,0 +1,19 @@
+<template name="createPlaylistModal">
+    <div id="create-playlist" class="reveal-modal" data-reveal aria-labelledby="create-playlist-modal-title" aria-hidden="true" role="dialog">
+        <h1 id="create-playlist-modal-title">Create a new Playlist</h1>
+        <form data-abide>
+            <div class="name-field row">
+                <label>Playlist Name<small> required</small><small id="new-playlist-name-error" class="formError">A playlist name is required.</small>
+                    <div class="inputGroup">
+                        <input class="inputGroupInput" id="new-playlist-name" type="text" placeholder="Enter your playlist's name">
+                    </div>
+                </label>
+            </div>
+            <div class="row create-playlist-cancel">
+                <button type="button" class="cancel create-playlist-button" aria-label="Close">Cancel</button>
+                <button type="submit" id="create-playlist-button" class="create-playlist-button" disabled>Create Playlist</button>
+            </div>
+        </form>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+</template>

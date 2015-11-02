@@ -4,11 +4,13 @@
 Playlists = new Mongo.Collection('playlists');
 
 Meteor.methods({
-    addPlaylist: function(name, owner, members) {
+    addPlaylist: function(id, name, owner, members, authorizedUserIds) {
         Playlists.insert({
+            'userId': id,
             'name': name,
             'owner': owner,
-            'members': members
+            'members': members,
+            'authorizedUserIds' : authorizedUserIds
         });
     }
 });
