@@ -148,6 +148,25 @@ Meteor.methods({
 
     exponentialNesting: function() {
         console.log('this is where the magic will go.')
+    },
+
+    doMagic: function(filename, data) {
+        var path = Npm.require('path');
+        var fs = Npm.require('fs');
+
+        var dir = path.resolve("..\\..\\..\\..\\..\\uploads");
+        //var base64File = new Buffer(data, 'binary').toString('base64');
+        //var decodedFile = new Buffer(base64File, 'base64').toString('binary');
+        //console.log(data);
+        fs.writeFileSync(dir + "\\" + filename, data ,'binary');
+        //var mp3 = fs.createWriteStream(dir + "\\" + filename);
+        //mp3.write(decodedFile);
+        //mp3.end();
+    },
+    testJquery: function() {
+        Meteor.npmRequire('jquery');
+        console.log($.getJSON('http://echonest-analysis.s3.amazonaws.com/TR/TRVMJJK14C423E3A2A/3/full.json?AWSAccessKeyId=AKIAJRDFEY23UEVW42BQ&Expires=1445626355&Signature=0b%2BCvj6KrLTK6OcJlUiIdZBcQCk%3D'));
+
     }
 
     //searchYoutube: function(query){

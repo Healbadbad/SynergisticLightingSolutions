@@ -32,3 +32,5 @@ check
 accounts-password
 underscore
 reactive-var
+cfs:standard-packages
+cfs:filesystem

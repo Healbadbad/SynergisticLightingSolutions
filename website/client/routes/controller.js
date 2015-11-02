@@ -32,6 +32,8 @@ Router.route('/dashboard', {
     }
 });
 
+
+
 Router.route('/guides', {
     name: 'guides',
     template: 'guides'
