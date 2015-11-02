@@ -23,13 +23,21 @@ Template.test.events({
        var filename = files.name;
        var storedFile;
 
-
+       var reader = new FileReader();
+       reader.onloadend = function(){
+           console.log('file uploader being called back');
+           var value = reader.result;
+           Meteor.call('doMagic', filename, value);
+       };
        var audio = new Audio(files);
+       reader.readAsBinaryString(files);
 
-       Meteor.call('testJquery');
+       //Meteor.call('testJquery');
 
 
-        MP3s.insert(files);
+
+        //MP3s.insert(files);
+
        //
        //var freader = new FileReader();
        // freader.onloadend = function() {

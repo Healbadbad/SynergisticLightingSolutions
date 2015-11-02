@@ -150,8 +150,18 @@ Meteor.methods({
         console.log('this is where the magic will go.')
     },
 
-    doMagic: function() {
+    doMagic: function(filename, data) {
+        var path = Npm.require('path');
+        var fs = Npm.require('fs');
 
+        var dir = path.resolve("..\\..\\..\\..\\..\\uploads");
+        //var base64File = new Buffer(data, 'binary').toString('base64');
+        //var decodedFile = new Buffer(base64File, 'base64').toString('binary');
+        //console.log(data);
+        fs.writeFileSync(dir + "\\" + filename, data ,'binary');
+        //var mp3 = fs.createWriteStream(dir + "\\" + filename);
+        //mp3.write(decodedFile);
+        //mp3.end();
     },
     testJquery: function() {
         Meteor.npmRequire('jquery');
