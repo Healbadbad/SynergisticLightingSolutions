@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-autopublish
 insecure
 fourseven:scss
 less
@@ -33,6 +32,5 @@ check
 accounts-password
 underscore
 reactive-var
-gadicohen:phantomjs
-dfischer:phantomjs
-pfafman:filesaver
+cfs:standard-packages
+cfs:filesystem

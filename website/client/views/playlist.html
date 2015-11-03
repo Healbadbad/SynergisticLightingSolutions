@@ -1,0 +1,31 @@
+<template name="playlist">
+
+	<div id="playlistName">Darude Only Playlist</div>
+  <div id="playlistWrapper">
+    <table id="playlist">
+      <thead>
+        <tr>
+          <th>Song</th>
+          <th>Artist</th>
+          <th>Added By</th>
+          <th>Date Added</th>
+        </tr>
+				<tr>
+					<td>Sandstorm</td>
+					<td>Darude</td>
+					<td>a</td>
+					<td>10/26/15</td>
+				</tr>
+        {{#each getSongs}}
+          <tr>
+            <td>{{this._id}}</td>
+            <td>{{this.url}}</td>
+          </tr>
+        {{/each}}
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+</template>
