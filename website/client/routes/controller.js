@@ -49,3 +49,4 @@ Router.route('/playlist/:id', {
         template: 'playlist'
     }
 );
+
