@@ -183,7 +183,7 @@ function advanceSegment(segments) {
 function updateBounce() {
     var colorC = 255 - (255 * (ms - beatStart) / (beatEnd - beatStart));
     //console.log(colorC);
-    Meteor.call('setColorSolid', colorC, colorC, colorC);
+    //Meteor.call('setColorSolid', colorC, colorC, colorC);
 }
 
 function updateColor() {
