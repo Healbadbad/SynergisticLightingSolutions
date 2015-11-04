@@ -26,23 +26,31 @@ Template.navBarLoggedIn.rendered = function(){
 
     var playPause = $("#playPauseIcon");
     $("#playButton").click(function(){
-      console.log("click");
       isPlaying();
     });
+
+    var musicPlayer = new Audio();
+    var song = "http://kolber.github.io/audiojs/demos/mp3/juicy.mp3"
+    musicPlayer.src = song;
+    musicPlayer.autoplay = false;
+
     function isPlaying(){
       var playButton = document.getElementById("playButton");
       if(playPause.attr("class").indexOf("play") > -1){
-        console.log("pause");
         playPause.attr("class", "fa fa-pause");
         playButton.style.fontSize = "70px";
         playButton.style.top = "-30%";
+        Meteor.call("playSong", song);
+        //musicPlayer.play();
       } else {
-        console.log("play");
         playPause.attr("class", "fa fa-play-circle");
         playButton.style.fontSize = "100px";
         playButton.style.top = "-70%";
+        Meteor.call("pauseSong");
+        //musicPlayer.pause();
       }
     }
+
 }
 
 Template.navBarLoggedIn.onCreated(function(){
