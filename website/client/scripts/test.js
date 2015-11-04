@@ -13,7 +13,10 @@ Template.test.events({
         reader.onloadend = function () {
             var value = reader.result;
 
-            Meteor.call('localUploadAndAnalyze', filename, value);
+            toastr.success("Uploading song");
+            Meteor.call('localUploadAndAnalyze', filename, value, function(err, res) {
+                toastr.clear();
+            });
 
             Meteor.call('echoUpload', filename, Router.current().location.get().rootUrl, function(err, md5) {
                 Meteor.call('getEchoUrl', md5, function(err, url) {

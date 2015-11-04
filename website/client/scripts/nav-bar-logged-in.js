@@ -46,11 +46,13 @@ Template.navBarLoggedIn.rendered = function(){
         playButton.style.top = "-30%";
         //Meteor.call("playSong", song);
           var url = Songs.find({name: Session.get('song-name')}).fetch()[0].url;
-            console.log(url);
-          $.getJSON(url, function (data) {
-            Meteor.call('algorithmExponential', data.beats, data.segments);
-            musicPlayer.play();
-        });
+          if(url) {
+              $.getJSON(url, function (data) {
+                  Meteor.call('algorithmExponential', data.beats, data.segments);
+              }).always(function() {musicPlayer.play()});
+          } else {
+              musicPlayer.play();
+          }
       } else {
         playPause.attr("class", "fa fa-play-circle");
         playButton.style.fontSize = "100px";

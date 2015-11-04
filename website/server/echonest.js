@@ -65,6 +65,9 @@ Meteor.methods({
 
             },
             function (err, res) {
+                if(err) {
+                    future.return(err);
+                }
                 future.return(res.data.response.track.md5);
             });
         return future.wait();
@@ -183,7 +186,7 @@ function advanceSegment(segments) {
 function updateBounce() {
     var colorC = 255 - (255 * (ms - beatStart) / (beatEnd - beatStart));
     //console.log(colorC);
-    Meteor.call('setColorSolid', colorC, colorC, colorC);
+    //Meteor.call('setColorSolid', colorC, colorC, colorC);
 }
 
 function updateColor() {
