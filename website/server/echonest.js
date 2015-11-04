@@ -141,7 +141,7 @@ function updateLights(beats, segments, updateRate, smoothingRate) {
         ms = d.getTime();
         advanceBeat(beats);
         advanceSegment(segments);
-        updateColor();
+        updateBounce();
     } else {
         clearInterval(loop);
     }
@@ -180,14 +180,20 @@ function advanceSegment(segments) {
     }
 }
 
+function updateBounce() {
+    var colorC = 255 - (255 * (ms - beatStart) / (beatEnd - beatStart));
+    //console.log(colorC);
+    Meteor.call('setColorSolid', colorC, colorC, colorC);
+}
+
 function updateColor() {
     var redC = currentColor.red * (1 - smoothingRate) + nextColor.red * smoothingRate;
     var greenC = currentColor.green * (1 - smoothingRate) + nextColor.green * smoothingRate;
     var blueC = currentColor.blue * (1 - smoothingRate) + nextColor.blue * smoothingRate;
-    console.log("RED ", redC + " CURRENT: " + currentColor.red + " NEXT: " + nextColor.red +
-    "SMOOTHING RATE: " + smoothingRate);
+    //console.log("RED ", redC + " CURRENT: " + currentColor.red + " NEXT: " + nextColor.red +
+    //"SMOOTHING RATE: " + smoothingRate);
     currentColor = {red: redC, green: greenC, blue: blueC};
 
-    Meteor.call('setColorSolid', redC, greenC, blueC);
+    //Meteor.call('setColorSolid', redC, greenC, blueC);
 }
 

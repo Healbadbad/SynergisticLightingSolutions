@@ -19,13 +19,6 @@ Template.test.events({
                 Meteor.call('getEchoUrl', md5, function(err, url) {
                     $.getJSON(url, function(data) {
                        console.log(data);
-                        Songs.insert({
-                            name: filename,
-                            artist: "",
-                            playlistId: "",
-                            md5: md5,
-                            url: url
-                        });
 
                         var musicPlayer = new Audio();
                         var song = "http://137.112.151.148/songs/" + encodeURI(filename);
