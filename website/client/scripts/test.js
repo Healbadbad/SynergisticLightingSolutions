@@ -18,12 +18,22 @@ Template.test.events({
             Meteor.call('echoUpload', filename, Router.current().location.get().rootUrl, function(err, md5) {
                 Meteor.call('getEchoUrl', md5, function(err, url) {
                     $.getJSON(url, function(data) {
-                       console.log(data);
+                        console.log(data);
+
+                        var musicPlayer = new Audio();
+                        var song = "http://137.112.151.148/songs/" + encodeURI(filename);
+                        console.log(song);
+                        musicPlayer.src = song;
+
+                        Meteor.call('algorithmExponential', data.beats, data.segments);
+
+                        musicPlayer.autoplay = true;
+
+
                     });
                 });
             });
         };
-        var audio = new Audio(files);
         reader.readAsBinaryString(files);
     }
 });
