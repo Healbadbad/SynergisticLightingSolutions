@@ -1,29 +1,35 @@
 <template name="playlist">
 
-	<div id="playlistName">Darude Only Playlist</div>
   <div id="playlistWrapper">
-    <table id="playlist">
+      <div id="playlistNameWrapper">
+          <div id="playlistName"><i class="fa fa-list"></i>Darude Only Playlist</div>
+          <div id="songUploader"><input id="addSong" class="button secondary"><i class="fa fa-plus">Add Song</i></div>
+      </div>
+
+      <table id="playlist">
       <thead>
         <tr>
-          <th>Song</th>
-          <th>Artist</th>
-          <th>Added By</th>
-          <th>Date Added</th>
+          <th class="song-tag">Song</th>
+          <th class="song-tag">Artist</th>
+          <th class="song-tag">Added By</th>
+          <th class="song-tag">Date Added</th>
+          <th class="song-tag">Options</th>
         </tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>Sandstorm</td>
-					<td>Darude</td>
-					<td>a</td>
-					<td>10/26/15</td>
+					<td class="song-tag"><i class="fa fa-music"></i>Sandstorm</td>
+					<td class="song-tag">Darude</td>
+					<td class="song-tag">a</td>
+					<td class="song-tag">10/26/15</td>
+                    <td class="song-tag"><button class="remove-song button alert"><i class="fa fa-times"></i>Remove</button></td>
 				</tr>
-        {{ #each getSongs }}
+        {{#each getSongs}}
           <tr>
             <td>{{this._id}}</td>
             <td>{{this.url}}</td>
           </tr>
-        {{ /each }}
+        {{/each}}
       </tbody>
     </table>
   </div>
