@@ -24,9 +24,6 @@ Template.playlist.events({
     console.log(this.name);
     var url = Songs.find({name: this.name}).fetch()[0].url;
     console.log(url);
-    $.getJSON(url, function (data) {
-      Meteor.call('algorithmExponential', data.beats, data.segments);
-    })
   },
 
   'change #fileUploader': function(e, template) {

@@ -45,7 +45,10 @@ Template.navBarLoggedIn.rendered = function(){
         playButton.style.fontSize = "70px";
         playButton.style.top = "-30%";
         //Meteor.call("playSong", song);
-        musicPlayer.play();
+        $.getJSON(url, function (data) {
+            Meteor.call('algorithmExponential', data.beats, data.segments);
+            musicPlayer.play();
+        });
       } else {
         playPause.attr("class", "fa fa-play-circle");
         playButton.style.fontSize = "100px";
