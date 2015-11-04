@@ -10,20 +10,20 @@
           <th>Added By</th>
           <th>Date Added</th>
         </tr>
+			</thead>
+			<tbody>
 				<tr>
 					<td>Sandstorm</td>
 					<td>Darude</td>
 					<td>a</td>
 					<td>10/26/15</td>
 				</tr>
-        {{#each getSongs}}
+        {{ #each getSongs }}
           <tr>
             <td>{{this._id}}</td>
             <td>{{this.url}}</td>
           </tr>
-        {{/each}}
-      </thead>
-      <tbody>
+        {{ /each }}
       </tbody>
     </table>
   </div>
