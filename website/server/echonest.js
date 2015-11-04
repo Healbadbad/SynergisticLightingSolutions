@@ -30,7 +30,7 @@ var loop;
 var currentColor;
 var nextColor;
 
-lights = Npm.require('./lights');
+//lights = Meteor.require('lights');
 
 var colorArray = [[0, 0, 255], [0, 127, 255], [0, 255, 255], [0, 255, 127], [0, 255, 0], [127, 255, 0],
     [255, 255, 0], [255, 127, 0],[255, 0, 0],[255, 0, 127],[255, 0, 255], [127, 0, 255]];
@@ -188,6 +188,6 @@ function updateColor() {
     "SMOOTHING RATE: " + smoothingRate);
     currentColor = {red: redC, green: greenC, blue: blueC};
 
-    lights.setColorSolid(redC, greenC, blueC);
+    Meteor.call('setColorSolid', redC, greenC, blueC);
 }
 
