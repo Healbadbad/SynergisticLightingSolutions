@@ -44,9 +44,8 @@ Router.route('/users', {
     template: 'users'
 });
 
-Router.route('/playlist/:id', {
-        name: 'playlist.show',
+Router.route('/playlist/:_id', {
+        name: 'playlist',
         template: 'playlist'
     }
 );
-
