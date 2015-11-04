@@ -18,6 +18,17 @@ Template.playlist.events({
     $('#fileUploader').click();
   },
 
+  'click .play-song': function(e, template) {
+    Session.set('playing-song', "http://137.112.151.148/songs/" + encodeURI(this.name) + '.mp3');
+    Session.set('song-name', this.name);
+    console.log(this.name);
+    var url = Songs.find({name: this.name}).fetch()[0].url;
+    console.log(url);
+    $.getJSON(url, function (data) {
+      Meteor.call('algorithmExponential', data.beats, data.segments);
+    })
+  },
+
   'change #fileUploader': function(e, template) {
     file = $("input[type='file']")[0].files[0];
     var filename = file.name;
@@ -27,14 +38,7 @@ Template.playlist.events({
     console.log(template);
 
 
-    Songs.insert({
-      name: filename.substr(0, filename.length - 4),
-      artist: "",
-      playlist: [template.data.id],
-      uploadedBy: Meteor.user().username,
-      md5: "",
-      url: ""
-    });
+
 
 
     reader.onloadend = function () {
@@ -42,7 +46,21 @@ Template.playlist.events({
 
 
 
-    //  Meteor.call('localUploadAndAnalyze', filename, value);
+      Meteor.call('localUploadAndAnalyze', filename, value);
+      Meteor.call('echoUpload', filename, Router.current().location.get().rootUrl, function(err, md5) {
+        Meteor.call('getEchoUrl', md5, function(err, url) {
+
+            Songs.insert({
+              name: filename.substr(0, filename.length - 4),
+              artist: "",
+              playlist: [template.data.id],
+              uploadedBy: Meteor.user().username,
+              md5: md5,
+              url: url
+
+          });
+        });
+      });
     //
     //  Meteor.call('echoUpload', filename, Router.current().location.get().rootUrl, function(err, md5) {
     //    Meteor.call('getEchoUrl', md5, function(err, url) {
