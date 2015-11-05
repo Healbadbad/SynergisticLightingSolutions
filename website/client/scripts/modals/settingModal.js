@@ -11,6 +11,8 @@ Template.settingsModal.events({
     'click #update-firmware-button': function (e) {
         // TODO
         e.preventDefault();
+        $('#update-firmware-button').prop('disabled', true);
+        $("#update-firmware-alert").css("display", "block");
         console.log("update the firmware");
     },
     'click #update-number-leds-button': function (e) {
@@ -32,6 +34,11 @@ Template.settingsModal.events({
         });
         e.stopPropagation();
     }
-});
+    ,
+    'click #update-firmware-alert-close': function (e) {
+        $("#update-firmware-alert").css("display", "none");
+    }
+})
+;
 
 
