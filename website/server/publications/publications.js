@@ -12,7 +12,17 @@ Meteor.publish('playlistSongs', function(id) {
 
 Meteor.publish('getPlaylist', function(owner) {
     return Playlists.find({owner: owner});
-})
+});
+
+Meteor.publish('getPlaylistById', function(id) {
+   return Playlists.find({_id: id});
+});
+
+Meteor.publish('getSongsFromPlaylist', function(id) {
+    var playlistArray = Playlists.find({_id: id}).fetch()[0].songs;
+    console.log("ARRAY: ", playlistArray)
+    return Songs.find({_id: {$in: playlistArray}});
+});
 
 //Meteor.publish('playlistSongs', function(playlistId) {
 //    return Songs.find({

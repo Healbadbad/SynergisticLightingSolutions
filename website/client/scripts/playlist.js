@@ -1,6 +1,7 @@
 Template.playlist.helpers({
   'getSongs' : function() {
-    return Songs.find();
+    //var playlistArray = ;
+    return Songs.find({_id: {$in: Playlists.find().fetch()[0].songs}});
   },
 
   'canRemoveSong': function(songAdder) {
@@ -39,7 +40,8 @@ Template.playlist.events({
     var parsedArtist = "";
 
     var reader = new FileReader();
-    console.log(template);
+
+    var self = this;
 
     toastr.options = {
       timeOut: "5000",
@@ -57,28 +59,31 @@ Template.playlist.events({
       var value = reader.result;
 
 
+
+
       toastr.success("Song successfully uploaded");
-      console.log(parsedFilename.substr(0, parsedFilename.length - 4));
       Meteor.call('localUploadAndAnalyze', parsedFilename, value);
-      Songs.insert({
+      var song = Songs.insert({
         name: parsedFilename.substr(0, parsedFilename.length - 4),
         artist: parsedArtist,
-        playlist: [template.data.id],
         uploadedBy: Meteor.user().username
       });
-
-
+      console.log("ID: ", self.id);
+      Playlists.update({_id: self.id}, {
+        $push: {songs: song}
+      });
     };
     reader.readAsBinaryString(file);
   },
 
   'click .remove-song': function(e) {
+    console.log(this);
     Songs.remove({_id: this._id});
   },
 
   'click #analyzeSong': function(e) {
-    console.log(this.name + ".mp3");
     self = this;
+
     Meteor.call('echoUpload', this.name + ".mp3", Router.current().location.get().rootUrl, function (err, md5) {
       if (md5 == undefined) {
 
@@ -86,7 +91,6 @@ Template.playlist.events({
         Meteor.call('getEchoUrl', md5, function (err, url) {
 
           $.getJSON(url, function (data) {
-            console.log("Called data writer");
             Meteor.call('writeJSONFile', JSON.stringify(data), self.name + ".json");
           });
 
@@ -94,7 +98,6 @@ Template.playlist.events({
             _id: self._id
           }, {
             $set: {
-              md5: md5,
               json: self.name + ".json"
             }
           });

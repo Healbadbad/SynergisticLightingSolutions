@@ -16,7 +16,7 @@ Template.createPlaylistModal.events({
         });
         e.stopPropagation();
         var playlistName = $('#new-playlist-name').val();
-        Meteor.call('addPlaylist', Meteor.userId(), playlistName, Meteor.user().username, [], [Meteor.userId()]);
+        Meteor.call('addPlaylist', Meteor.userId(), playlistName, Meteor.user().username, [], [], [Meteor.userId()]);
     },
     'click .cancel': function(e) {
         e.preventDefault();
