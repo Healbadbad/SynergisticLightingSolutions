@@ -265,7 +265,7 @@ function updateBounce() {
 }
 
 function updateColor() {
-    intensity = 1 - ((ms - beatStart) / (beatEnd - beatStart));
+    intensity = Math.min(1, 1.2 - ((ms - beatStart) / (beatEnd - beatStart)));
     var redC = currentColor.red * (1 - smoothingRate) + nextColor.red * smoothingRate;
     var greenC = currentColor.green * (1 - smoothingRate) + nextColor.green * smoothingRate;
     var blueC = currentColor.blue * (1 - smoothingRate) + nextColor.blue * smoothingRate;
