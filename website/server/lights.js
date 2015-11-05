@@ -1,30 +1,7 @@
 ///**
 // * Created by Jeremy on 11/4/2015.
 // */
-//var opc_client = Npm.require('open-pixel-control');
 //
-//
-////var sys = require('sys');
-////var exec = require('child_process').exec;
-////function puts(error, stdout, stderr) { sys.puts(stdout)
-////sys.puts(stderr)}
-//
-//
-//
-//var client = new opc_client({address:'192.168.7.2',port:7890});
-//client.on('connected',function(){
-//    var strip = client.add_strip({length:600});
-//});
-//
-//
-//
-//client.connect();
-//var pixels_main = [];
-//var pixels_temp = [];
-//for(var i=0;i<600;i++){
-//    pixels_main[i]  = [180,255,255];
-//    pixels_temp[i]  = [180,255,255];
-//}
 //
 ////setTimeout(function(){client.put_pixels(0,pixels_main);},1000)
 //

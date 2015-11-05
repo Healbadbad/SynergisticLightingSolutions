@@ -15,3 +15,18 @@ Router.route('/songs/:name', function() {
         this.response.end();
 
     }, {where: 'server'});
+
+Router.route('/jsondocs/:file', function() {
+        var path = Npm.require('path');
+        var dir = path.resolve("..\\..\\..\\..\\..\\jsonDocs");
+        var file = this.params.file;
+        var filePath = dir + '\\' + file;
+        var data = fs.readFileSync(filePath);
+
+        //this.response.writeHead(200, {
+        //        'Content-Type': ''
+        //});
+        this.response.write(data);
+        this.response.end();
+
+}, {where: 'server'});
