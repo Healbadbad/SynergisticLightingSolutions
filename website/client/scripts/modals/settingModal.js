@@ -32,6 +32,9 @@ Template.settingsModal.events({
     ,
     'click .close': function (e) {
         $(e.target).parent().remove();
+    },
+    'change #color-theme-input': function(e) {
+        changeColorTheme($(e.target).val());
     }
 });
 
@@ -60,4 +63,9 @@ function updateFirmware() {
 function updateLEDNumber(newNumber) {
     // TODO
     console.log("update the number of leds to " + newNumber);
+}
+
+function changeColorTheme(newColorTheme) {
+    // TODO
+    console.log("changing color theme to " + newColorTheme);
 }
