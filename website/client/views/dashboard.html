@@ -14,7 +14,7 @@
                     <tr>
                         <td>{{getPlaylistIndex}}</td>
                         <td>
-                            {{#linkTo route="playlist.show" class="my-cls"}}
+                            {{#linkTo route="playlist" class="my-cls"}}
                                 {{this.name}}
                             {{/linkTo}}
                         </td>
@@ -22,12 +22,12 @@
                         <td>{{this.members.length}}</td>
                         <td>
                             {{#if isAuthorized this.authorizedUserIds currentUser._id}}
-                                <a href="{{pathFor route='playlist.show'}}">
+                                <a href="{{pathFor route='playlist'}}">
                                     <button class="button radius small playlist-option-button">View / Edit</button>
                                 </a>
                                 <button id="delete-playlist-button" class="button radius alert small playlist-option-button">Remove</button>
                             {{else}}
-                                <a href="{{pathFor route='playlist.show'}}">
+                                <a href="{{ pathFor route='playlist' }}">
                                     <button class="button radius small playlist-option-button">View</button>
                                 </a>
                             {{/if}}

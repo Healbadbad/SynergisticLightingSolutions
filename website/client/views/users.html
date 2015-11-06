@@ -1,0 +1,20 @@
+<template name="users">
+  <h2 id="usersTitle">Users</h2>
+  <div id="usersWrapper">
+    <table id="users">
+      <thead>
+        <tr>
+          <th>Username</th>
+        </tr>
+        {{#each getUsers}}
+          <tr>
+            <td>{{this.username}}</td>
+          </tr>
+        {{/each}}
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+</template>

@@ -32,13 +32,27 @@ Router.route('/dashboard', {
     }
 });
 
+
+
 Router.route('/guides', {
     name: 'guides',
     template: 'guides'
 });
 
-Router.route('/playlist/:id', {
-        name: 'playlist.show',
-        template: 'playlist'
+Router.route('/users', {
+    name: 'users',
+    template: 'users'
+});
+
+Router.route('/playlist/:_id', {
+        name: 'playlist',
+        template: 'playlist',
+        waitOn: function() {
+          return [Meteor.subscribe('playlistSongs', this.params._id),
+              Meteor.subscribe('getPlaylist', Meteor.user().username)];
+        },
+        data: function() {
+            return {id: this.params._id};
+        }
     }
 );
