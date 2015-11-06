@@ -1,0 +1,43 @@
+<template name="settingsModal">
+    <div id="settings" class="reveal-modal" data-reveal aria-labelledby="settings-modal-title" aria-hidden="true"
+         role="dialog">
+        <h1 id="settings-modal-title">Settings</h1>
+
+        <form data-abide>
+            <div class="name-field row">
+                <div id="alert-box">
+
+                </div>
+                <label>Firmware Update
+                    <button type="button" id="update-firmware-button" class="settings-button">Check for Updates</button>
+                </label>
+            </div>
+            <div class="name-field row">
+                <label>Color Theme
+                    <div class="inputGroup">
+                        <select class="inputGroupInput" id="color-theme-input">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                </label>
+            </div>
+            <div class="name-field row">
+                <label>Number of LEDs
+                    <small> required</small>
+                    <small id="led-error" class="formError">You must have a positive number of LEDs</small>
+                    <div class="inputGroup">
+                        <input class="inputGroupInput" id="led-input" type="number" min="0" placeholder="0">
+                    </div>
+                </label>
+            </div>
+            <div class="row settings-cancel">
+                <button type="button" class="cancel settings-button" aria-label="Close">Cancel</button>
+                <button type="submit" id="update-number-leds-button" class="settings-button" disabled>Update Number of
+                    LEDs
+                </button>
+            </div>
+        </form>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+</template>

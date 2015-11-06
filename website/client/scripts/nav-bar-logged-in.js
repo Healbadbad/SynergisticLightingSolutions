@@ -2,9 +2,26 @@
  * Created by wrightjt on 10/15/2015.
  */
 
+
 Session.set('playing-song', "");
 musicPlayer = new Audio();
 
+function resetNumberOfLEDS() {
+    var numberOfLEDS = getNumberOfLEDS();
+    $('#led-input').val(numberOfLEDS);
+    if (numberOfLEDS >= 0) {
+        $('#led-error').hide();
+        $('#update-number-leds-button').prop('disabled', false);
+    } else {
+        $('#led-error').show();
+        $('#update-number-leds-button').prop('disabled', true);
+    }
+}
+
+function getNumberOfLEDS() {
+    // TODO
+    return 42;
+}
 
 Template.navBarLoggedIn.events({
   	'click #logout': function(e) {
@@ -19,6 +36,10 @@ Template.navBarLoggedIn.events({
   	'click #nextButton': function(e, template){
   		//template.currentSong.set("Sandstorm - Darude");
   	},
+	'click #settingsButton' : function() {
+		$('#settings').foundation("reveal", "open");
+		resetNumberOfLEDS();
+	},
 
     'click #playButton': function(e, template){
       // change play to pause or vice versa, and play/pause song
@@ -77,6 +98,6 @@ Template.navBarLoggedIn.helpers({
 	getCurrentSong: function(){
 		//console.log(Template.instance().currentSong.get());
         musicPlayer.src = Session.get('playing-song');
-		return Session.get('song-name');
+        return Session.get('song-name');
 	}
 });
