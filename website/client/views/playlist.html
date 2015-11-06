@@ -22,9 +22,9 @@
 					<td class="song-tag">{{this.artist}}</td>
 					<td class="song-tag">{{this.uploadedBy}}</td>
                     <td class="song-tag">
-                        {{#if hasUrl this.url}}
+                        {{#unless this.analyzed}}
                         <button id="analyzeSong" class="button secondary">Analyze</button>
-                        {{/if}}
+                        {{/unless}}
                         {{#if canRemoveSong this.uploadedBy}}
                             <button class="remove-song button alert"><i class="fa fa-times"></i>Remove</button>
                         {{/if}}
