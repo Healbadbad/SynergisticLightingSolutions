@@ -45,6 +45,15 @@ function createAlert(message) {
 
 function updateFirmware() {
     // TODO
+    var div = $('<div></div>');
+    var alert = $('<div></div>').addClass("alert-box success radius").text(message);
+    alert.val(message);
+    alert.append($('<a></a>').addClass('close').html('&times'));
+    $('#alert-box').append(alert);
+}
+
+function updateFirmware() {
+    // TODO
     console.log("update the firmware");
 }
 
