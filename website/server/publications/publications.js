@@ -20,7 +20,6 @@ Meteor.publish('getPlaylistById', function(id) {
 
 Meteor.publish('getSongsFromPlaylist', function(id) {
     var playlistArray = Playlists.find({_id: id}).fetch()[0].songs;
-    console.log("ARRAY: ", playlistArray)
     return Songs.find({_id: {$in: playlistArray}});
 });
 

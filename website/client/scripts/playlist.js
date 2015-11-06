@@ -78,7 +78,12 @@ Template.playlist.events({
 
   'click .remove-song': function(e) {
     console.log(this);
-    Songs.remove({_id: this._id});
+    var playlistId = Playlists.find().fetch()[0]._id;
+    Playlists.update({
+      _id: playlistId
+    }, {
+      $pull: {songs: this._id}
+    });
   },
 
   'click #analyzeSong': function(e) {
@@ -92,15 +97,16 @@ Template.playlist.events({
 
           $.getJSON(url, function (data) {
             Meteor.call('writeJSONFile', JSON.stringify(data), self.name + ".json");
+            Songs.update({
+              _id: self._id
+            }, {
+              $set: {
+                analyzed: true
+              }
+            });
           });
 
-          Songs.update({
-            _id: self._id
-          }, {
-            $set: {
-              json: self.name + ".json"
-            }
-          });
+
         });
       }
     });
