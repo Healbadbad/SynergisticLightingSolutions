@@ -48,8 +48,8 @@ Router.route('/playlist/:_id', {
         name: 'playlist',
         template: 'playlist',
         waitOn: function() {
-          return [Meteor.subscribe('playlistSongs', this.params._id),
-              Meteor.subscribe('getPlaylist', Meteor.user().username)];
+          return [Meteor.subscribe('getPlaylistById', this.params._id),
+                  Meteor.subscribe('allSongs')];
         },
         data: function() {
             return {id: this.params._id};

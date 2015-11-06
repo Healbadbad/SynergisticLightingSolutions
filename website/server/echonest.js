@@ -1,4 +1,4 @@
-var URate = 60; // The rate at which to update per beat cycle
+var URate = 120; // The rate at which to update per beat cycle
 var frame = 0; // The frame that is being displayed
 
 // Calculation pre-performed, but adjustable later on
@@ -30,6 +30,34 @@ var loop;
 var currentColor;
 var nextColor;
 
+var isPaused;
+var isRunning;
+
+var opc_client = Npm.require('open-pixel-control');
+
+
+//var sys = require('sys');
+//var exec = require('child_process').exec;
+//function puts(error, stdout, stderr) { sys.puts(stdout)
+//sys.puts(stderr)}
+
+
+
+var client = new opc_client({address:'137.112.151.224',port:7890});
+client.on('connected',function(){
+    var strip = client.add_strip({length:600});
+});
+
+
+
+client.connect();
+var pixels_main = [];
+var pixels_temp = [];
+for(var i=0;i<600;i++){
+    pixels_main[i]  = [180,255,255];
+    pixels_temp[i]  = [180,255,255];
+}
+
 //lights = Meteor.require('lights');
 
 var colorArray = [[0, 0, 255], [0, 127, 255], [0, 255, 255], [0, 255, 127], [0, 255, 0], [127, 255, 0],
@@ -48,13 +76,37 @@ Meteor.methods({
         fs.writeFileSync(dir + "\\" + filename, data, 'binary');
     },
 
+    writeJSONFile: function(jsonDoc, filename) {
+
+        var path = Npm.require('path');
+        var fs = Npm.require('fs');
+
+        var dir = path.resolve("..\\..\\..\\..\\..\\jsonDocs"); // Get file location
+
+        fs.writeFileSync(dir + "\\" + filename, jsonDoc, 'binary');
+    },
+
+    getJSONFile: function(filename) {
+
+        console.log(filename);
+
+        var path = Npm.require('path');
+        var fs = Npm.require('fs');
+
+        var dir = path.resolve("..\\..\\..\\..\\..\\jsonDocs"); // Get file location
+
+        console.log(dir + "\\" + filename);
+
+        data = fs.readFileSync(dir + "\\" + filename).toString();
+    },
+
     echoUpload: function (filename, siteUrl) {
 
         Future = Npm.require("fibers/future");
         var future = new Future();
         var apiKey = "KZVTGHHVOTXY6XXYA";
         var url = "http://developer.echonest.com/api/v4/track/upload";
-        var track = "http://137.112.151.148" + "/songs/" + encodeURI(filename);
+        var track = SONG_ADDRESS + encodeURI(filename);
 
         Meteor.http.post("http://developer.echonest.com/api/v4/track/upload?api_key=" + apiKey + "&url=" + track,
             {
@@ -65,10 +117,13 @@ Meteor.methods({
 
             },
             function (err, res) {
-                if(err) {
-                    future.return(err);
+                console.log(res);
+
+                if((res.data.response.track) == undefined) {
+                    future.return(undefined);
+                } else {
+                    future.return(res.data.response.track.md5);
                 }
-                future.return(res.data.response.track.md5);
             });
         return future.wait();
     },
@@ -110,6 +165,9 @@ Meteor.methods({
             currentBeat = beats[0];
             currentSegment = segments[0];
 
+            beatCounter = 0;
+            segCounter = 0;
+
             beatStart = ms;
             segmentStart = ms;
 
@@ -127,33 +185,55 @@ Meteor.methods({
             nextColor = {red: colorArray[highestPitch][0], green: colorArray[highestPitch][1], blue: colorArray[highestPitch][2]};
             console.log("CURRENT COLOR: " + currentColor.red + " NEXT COLOR: " + nextColor.red);
 
+            isRunning = true;
+            isPaused = false;
+
             loop = Meteor.setInterval(function(){
                 updateLights(beats, segments, URate, smoothingRate);
             }, (1000 / URate));
         }
+    },
+
+    clearAlgorithm: function() {
+        isRunning = false;
+        clearInterval(loop);
+    },
+
+    pauseAlgorithm: function() {
+        isPaused = true;
+    },
+
+    continueAlgorithm: function() {
+        isPaused = false;
+    },
+
+    isAlgorithmRunning: function() {
+        return isRunning;
     }
 });
-
-function printStuff() {
-    console.log("STUFF");
-}
 
 function updateLights(beats, segments, updateRate, smoothingRate) {
     if(beatCounter != beats.length - 1) {
         d = new Date();
         ms = d.getTime();
-        advanceBeat(beats);
-        advanceSegment(segments);
-        updateBounce();
+        if(!isPaused) {
+            advanceBeat(beats);
+            advanceSegment(segments);
+            updateColor(true);
+        } else {
+            fadeToWhite();
+            updateColor(false);
+        }
     } else {
+        fadeToWhite();
+        updateColor(false);
         clearInterval(loop);
     }
 
 }
 
 function advanceBeat(beats) {
-    //console.log("BEAT DIAGNOSTIC\n" +"TIME: " + ms + " COUNT: " + beatCounter + " START: " + beatStart + " END: " + beatEnd
-    //+ ' DURATION: ' + beatDuration);
+
     if(ms > beatEnd) { // Progress beat
 
         beatAdjustment = beatEnd - ms;
@@ -162,7 +242,6 @@ function advanceBeat(beats) {
         beatStart = ms;
         beatDuration = currentBeat.duration * 1000 + beatAdjustment;
         beatEnd = ms + beatDuration;
-        //console.log("UPDATED BEAT: " + beatCounter + " TOTAL BEATS: " + beats.length);
     }
 }
 
@@ -172,6 +251,11 @@ function advanceSegment(segments) {
         segCounter++;
         currentSegment = segments[segCounter];
         segmentDuration = currentSegment.duration * 1000 + segAdjustment;
+        if(segmentDuration < 400) {
+            segCounter++;
+            currentSegment = segments[segCounter];
+            segmentDuration += currentSegment.duration * 1000;
+        }
         segmentStart = ms;
         segmentEnd = ms + segmentDuration;
         //console.log("UPDATED SEGMENT " + segCounter);
@@ -186,17 +270,38 @@ function advanceSegment(segments) {
 function updateBounce() {
     var colorC = 255 - (255 * (ms - beatStart) / (beatEnd - beatStart));
     //console.log(colorC);
-    //Meteor.call('setColorSolid', colorC, colorC, colorC);
+
 }
 
-function updateColor() {
+function updateColor(shouldChangeIntensity) {
+    if(shouldChangeIntensity) {
+        intensity = Math.min(1, 1.2 - ((ms - beatStart) / (beatEnd - beatStart)));
+    } else {
+        intensity = 1;
+    }
     var redC = currentColor.red * (1 - smoothingRate) + nextColor.red * smoothingRate;
     var greenC = currentColor.green * (1 - smoothingRate) + nextColor.green * smoothingRate;
     var blueC = currentColor.blue * (1 - smoothingRate) + nextColor.blue * smoothingRate;
     //console.log("RED ", redC + " CURRENT: " + currentColor.red + " NEXT: " + nextColor.red +
     //"SMOOTHING RATE: " + smoothingRate);
     currentColor = {red: redC, green: greenC, blue: blueC};
-
-    //Meteor.call('setColorSolid', redC, greenC, blueC);
+    setColorSolid(redC * intensity, greenC * intensity, blueC * intensity);
 }
+
+function setColorSolid(r, g, b) {
+
+    var temp = [r, g, b];
+    for (var i = 0; i < 600; i++) {
+        pixels_main[i][0] = temp[0];
+        pixels_main[i][1] = temp[1];
+        pixels_main[i][2] = temp[2];
+
+    }
+    client.put_pixels(0, pixels_main);
+}
+
+function fadeToWhite() {
+    nextColor = {red: 180, green: 255, blue: 255};
+}
+
 

@@ -3,10 +3,10 @@
  */
 Router.configure({
     notFoundTemplate: 'notfound',
-    loadingTemplate: 'loading',
-    waitOn: function() {
-        return Meteor.subscribe('allSongs');
-    }
+    loadingTemplate: 'loading'
+    //waitOn: function() {
+    //    //return Meteor.subscribe('allSongs');
+    //}
 });
 
 Router.onBeforeAction(function() {

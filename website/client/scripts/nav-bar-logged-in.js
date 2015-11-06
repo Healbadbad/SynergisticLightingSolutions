@@ -65,20 +65,24 @@ Template.navBarLoggedIn.rendered = function(){
         playPause.attr("class", "fa fa-pause");
         playButton.style.fontSize = "70px";
         playButton.style.top = "-30%";
-        //Meteor.call("playSong", song);
-          var url = Songs.find({name: Session.get('song-name')}).fetch()[0].url;
-          if(url) {
-              $.getJSON(url, function (data) {
-                  Meteor.call('algorithmExponential', data.beats, data.segments);
-              }).always(function() {musicPlayer.play()});
+          if(Meteor.call('isAlgorithmRunning')) {
+              Meteor.call('continueAlgorithm');
           } else {
+
+              var url = JSON_ADDRESS + Session.get('song-name') + ".json";
+              $.getJSON(url, function(data) {
+                  Meteor.call('clearAlgorithm');
+                  Meteor.call('algorithmExponential', data.beats, data.segments);
+              });
+
               musicPlayer.play();
+
           }
       } else {
         playPause.attr("class", "fa fa-play-circle");
         playButton.style.fontSize = "100px";
         playButton.style.top = "-70%";
-        Meteor.call("pauseSong");
+        Meteor.call("pauseAlgorithm");
         musicPlayer.pause();
       }
     }

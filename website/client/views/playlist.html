@@ -2,7 +2,7 @@
 
   <div id="playlistWrapper">
       <div id="playlistNameWrapper">
-          <div id="playlistName"><i class="fa fa-list"></i>Darude Only Playlist</div>
+          <div id="playlistName"><i class="fa fa-list"></i>{{playlistName}}</div>
           <div id="songUploader"><button id="addSong" class="button secondary"><i class="fa fa-plus"></i>Add Song</button></div>
       </div>
 
@@ -22,6 +22,9 @@
 					<td class="song-tag">{{this.artist}}</td>
 					<td class="song-tag">{{this.uploadedBy}}</td>
                     <td class="song-tag">
+                        {{#unless this.analyzed}}
+                        <button id="analyzeSong" class="button secondary">Analyze</button>
+                        {{/unless}}
                         {{#if canRemoveSong this.uploadedBy}}
                             <button class="remove-song button alert"><i class="fa fa-times"></i>Remove</button>
                         {{/if}}
