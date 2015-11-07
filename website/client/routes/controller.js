@@ -19,6 +19,18 @@ Router.route('/test', function () {
     this.render('test');
 });
 
+Router.route('/homepage', {
+    name: 'homepage',
+    template: 'homepage',
+    layoutTemplate: 'homepageNavbar',
+    action: function() {
+        if(this.ready()) {
+            this.render('homepage');
+        }
+    }
+});
+
+
 Router.route('/dashboard', {
     name: 'dash',
     template: 'dashboard',
