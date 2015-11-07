@@ -262,7 +262,7 @@ function advanceSegment(segments) {
 
         pitches = currentSegment.pitches;
         highestPitch = pitches.indexOf(Math.max.apply(Math,pitches));
-        smoothingRate = URate / (segmentDuration);
+        smoothingRate = URate / (segmentDuration * 2);
         nextColor = {red: colorArray[highestPitch][0], green: colorArray[highestPitch][1], blue: colorArray[highestPitch][2]};
     }
 }

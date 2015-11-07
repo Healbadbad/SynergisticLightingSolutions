@@ -91,24 +91,26 @@ Template.playlist.events({
 
     Meteor.call('echoUpload', this.name + ".mp3", Router.current().location.get().rootUrl, function (err, md5) {
       if (md5 == undefined) {
-
+        $('#analyzeSong').click();
       } else {
-        Meteor.call('getEchoUrl', md5, function (err, url) {
-
-          $.getJSON(url, function (data) {
-            Meteor.call('writeJSONFile', JSON.stringify(data), self.name + ".json");
-            Songs.update({
-              _id: self._id
-            }, {
-              $set: {
-                analyzed: true
-              }
-            });
-          });
-
-
-        });
+        getURL(md5);
       }
     });
   }
 });
+
+function getURL(md5) {
+  Meteor.call('getEchoUrl', md5, function (err, url) {
+    console.log("Looped");
+    $.getJSON(url, function (data) {
+      Meteor.call('writeJSONFile', JSON.stringify(data), self.name + ".json");
+      Songs.update({
+        _id: self._id
+      }, {
+        $set: {
+          analyzed: true
+        }
+      });
+    }).fail(function() {getURL(md5)});
+  });
+}
