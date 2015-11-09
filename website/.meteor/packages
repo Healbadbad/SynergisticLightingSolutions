@@ -33,3 +33,4 @@ underscore
 reactive-var
 cfs:standard-packages
 cfs:filesystem
+chrismbeckett:toastr
