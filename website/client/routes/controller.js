@@ -36,7 +36,18 @@ Router.route('/dashboard', {
 
 Router.route('/guides', {
     name: 'guides',
-    template: 'guides'
+    template: 'guides',
+    onBeforeAction: function () {
+        if (Meteor.user()) {
+            this.layout('navBarLoggedIn');
+            Router.go('dash');
+            this.next();
+        }
+        else {
+            this.layout('navBar');
+        }
+        this.next();
+    }
 });
 
 Router.route('/users', {
