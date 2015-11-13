@@ -1,5 +1,23 @@
 <template name="homepage">
     <div class="homepage">
+        <div class="sub-navigation">
+            <div class="sidebar large-3">
+                {{> Template.dynamic template=chooseSidebar}}
+            </div>
 
+            <div class="main-nav large-9">
+                {{> Template.dynamic template=chooseMainNav}}
+            </div>
+        </div>
+
+        <div class="screens">
+            <div class="sidebar-screen large-3">
+                {{> playlistList}}
+            </div>
+
+            <div class="main-screen large-9">
+                {{> songList}}
+            </div>
+        </div>
     </div>
 </template>

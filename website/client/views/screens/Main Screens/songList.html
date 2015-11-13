@@ -1,0 +1,14 @@
+<template name="songList">
+    <div class="songList">
+        <div class="headers">
+            <div class="large-offset-1 large-11">
+                <h4 id="track" class="large-5 song-info">Track</h4>
+                <h4 id="artist" class="large-4 song-info">Artist</h4>
+                <h4 id="time" class="large-2 song-info">Time</h4>
+            </div>
+        </div>
+        {{#each getPlaylistSongs}}
+            {{> song}}
+        {{/each}}
+    </div>
+</template>

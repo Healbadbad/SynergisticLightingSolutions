@@ -1,0 +1,18 @@
+<template name="homepageNavbar">
+    <div class="homepageNavbar">
+        <div class="left-nav">
+            <div id="setNavMusic" class="nav-button">
+                <h2><i class="fa fa-bars"></i>Music</h2>
+            </div>
+            <div id="setNavLight" class="nav-button">
+                <h2><i class="fa fa-lightbulb-o"></i>Lights</h2>
+            </div>
+        </div>
+        <div class="right-nav">
+            <h2><i class="fa fa-user"></i>{{currentUser.username}}</h2>
+            <h2><i class="fa fa-gear"></i>Settings</h2>
+        </div>
+    </div>
+    {{> yield}}
+</template>
+

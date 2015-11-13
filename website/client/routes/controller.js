@@ -23,6 +23,11 @@ Router.route('/homepage', {
     name: 'homepage',
     template: 'homepage',
     layoutTemplate: 'homepageNavbar',
+
+    waitOn: function() {
+        Session.set('activeSong', null);
+      return [Meteor.subscribe('allPlaylists'), Meteor.subscribe('allSongs')];
+    },
     action: function() {
         if(this.ready()) {
             this.render('homepage');

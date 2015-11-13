@@ -1,0 +1,22 @@
+<template name="playlistList">
+
+    <div id="addPlaylistModal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <h2 id="modalTitle">Create a playlist</h2>
+        <div class="row">
+            <div class="large-12">
+                <label>
+                    <input type="text" class="large-12" id="playlistName" />
+                </label>
+            </div>
+        </div>
+        <button id="createPlaylist" class="button">Create</button>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+    <div class="playlistList">
+        {{#each getPlaylists}}
+            {{> playlist}}
+        {{/each}}
+        <a href="#" id="addPlaylist" class="button secondary large-10 large-offset-1"> <i class="fa fa-plus-circle"></i>Add Playlist</a>
+    </div>
+</template>

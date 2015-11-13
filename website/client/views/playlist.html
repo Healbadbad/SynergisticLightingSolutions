@@ -1,40 +1,6 @@
 <template name="playlist">
-
-  <div id="playlistWrapper">
-      <div id="playlistNameWrapper">
-          <div id="playlistName"><i class="fa fa-list"></i>{{playlistName}}</div>
-          <div id="songUploader"><button id="addSong" class="button secondary"><i class="fa fa-plus"></i>Add Song</button></div>
-      </div>
-
-      <table id="playlist">
-      <thead>
-        <tr>
-          <th class="song-tag">Song</th>
-          <th class="song-tag">Artist</th>
-          <th class="song-tag">Added By</th>
-          <th class="song-tag">Options</th>
-        </tr>
-			</thead>
-			<tbody>
-            {{#each getSongs}}
-				<tr>
-					<td class="song-tag play-song"><i class="fa fa-play-circle"></i>{{this.name}}</td>
-					<td class="song-tag">{{this.artist}}</td>
-					<td class="song-tag">{{this.uploadedBy}}</td>
-                    <td class="song-tag">
-                        {{#unless this.analyzed}}
-                        <button id="analyzeSong" class="button secondary">Analyze</button>
-                        {{/unless}}
-                        {{#if canRemoveSong this.uploadedBy}}
-                            <button class="remove-song button alert"><i class="fa fa-times"></i>Remove</button>
-                        {{/if}}
-                    </td>
-				</tr>
-            {{/each}}
-      </tbody>
-    </table>
-  </div>
-
-    <input id="fileUploader" type="file" hidden>
-
+    <div class="playlist">
+        <i class="fa fa-music"></i>
+        <h4>{{name}}</h4>
+    </div>
 </template>

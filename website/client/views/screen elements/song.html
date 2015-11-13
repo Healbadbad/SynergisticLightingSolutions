@@ -1,0 +1,11 @@
+<template name="song">
+    <div class="song">
+        {{#if activeSong}}
+            <i class="fa fa-play"></i>
+        {{/if}}
+        <div class="large-offset-1 large-11">
+            <h4 class="large-5 {{#if activeSong}}active{{/if}}">{{name}}</h4>
+            <h4 class="large-4 {{#if activeSong}}active{{/if}}">{{artist}}</h4>
+        </div>
+    </div>
+</template>
