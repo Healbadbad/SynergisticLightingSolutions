@@ -10,5 +10,16 @@
         {{#each getPlaylistSongs}}
             {{> song}}
         {{/each}}
+
+        {{#if playlistHasNoSongs}}
+            <div id="noSongs">
+                <h2>This playlist has no songs!</h2>
+                <h5>Click below to add a song to your playlist</h5>
+            </div>
+
+        {{/if}}
+
+        <button id="addSong" class="button secondary large-10 large-offset-1">Add Song</button>
+        <input id="fileSelector" type="file" multiple="multiple">
     </div>
 </template>

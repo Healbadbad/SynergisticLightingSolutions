@@ -37,7 +37,8 @@ Template.playlistList.onRendered(function() {
             name: name,
             owner: Meteor.user().username,
             userId: Meteor.user()._id,
-            members: []
+            members: [],
+            songs: []
         });
         $('#addPlaylistModal').foundation('reveal', 'close');
     });
